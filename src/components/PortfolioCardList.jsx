@@ -1,7 +1,6 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/styles";
 
 import {
   Box,
@@ -48,11 +47,10 @@ const projectDetails = [
 
 const useStyles = makeStyles({
   cardContainer: {
-    // maxWidth: "25%",
-    margin: "0 0.5rem 0.5rem 0.5rem",
+    // margin: "0 0.5rem 0.5rem 0.5rem",
+    margin: "0 1rem 1rem 1rem",
   },
   cardListContainer: {
-    // width: "100%",
     maxWidth: "100vw",
     height: "50%",
     zIndex: "0",
@@ -62,15 +60,13 @@ const useStyles = makeStyles({
   },
   cardActions: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "stretch",
     justifyContent: "space-around",
-    // margin-top: 16px;
   },
 });
 
 const PortfolioCardList = () => {
   const { cardContainer, cardListContainer, cardActions } = useStyles();
-  const theme = useTheme();
   return (
     <Box component="div" className={cardListContainer}>
       <Grid container justify="center" height="100%">

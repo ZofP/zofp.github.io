@@ -4,30 +4,26 @@ import { Typography, Avatar, Grid, Box } from "@material-ui/core";
 import Typed from "react-typed";
 import avatarImage from "../images/avatar.png";
 
-// CSS STYLES
 const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(15),
     height: theme.spacing(15),
-    margin: theme.spacing(1),
+    marginTop: "0.5rem",
   },
   title: {
-    // color: "tomato",
     color: theme.palette.primary.dark,
-    // marginBottom: "0.5rem",
     textAlign: "center",
+    fontWeight: "100",
+    margin: "1rem 1rem",
   },
   subtitle: {
-    // color: "tan",
     color: theme.palette.primary.light,
     marginBottom: "1.5rem",
     textAlign: "center",
+    fontWeight: "600",
+    textTransform: "uppercase",
   },
   typedContainer: {
-    // position: "absolute",
-    // top: "50%",
-    // left: "50%",
-    // transform: "translate(-50%,-50%)",
     width: "100%",
     textAlign: "center",
     zIndex: 1,
@@ -46,9 +42,9 @@ const Profile = () => {
         <Typed strings={["Petr Žofák"]} typeSpeed={40} />
       </Typography>
 
-      <Typography className={subtitle} variant="h4">
+      <Typography className={subtitle} variant="h5">
         <Typed
-          strings={["HTML5 | CSS3 | JavaScript ES6", "React.js | Redux"]}
+          strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
           typeSpeed={60}
           backSpeed={60}
           loop
