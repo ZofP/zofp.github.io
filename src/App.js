@@ -1,12 +1,16 @@
 import React from 'react';
 import { Route } from "react-router-dom"
-import CssBaseline from '@material-ui/core/CssBaseline'
+import {
+  CssBaseline,
+
+} from '@material-ui/core/'
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import './App.css';
-import Navbar from './components/Navbar';
+import Homepage from './pages/Homepage';
+
 
 
 const theme = createMuiTheme({
@@ -27,11 +31,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
-        <Navbar />
-        <div>navbar</div>
-        <div>header</div>
-        <div>portfolio</div>
+        <Homepage />
       </ThemeProvider>
     </>
   )
