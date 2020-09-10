@@ -20,10 +20,6 @@ const useStyles = makeStyles({
     background: `linear-gradient(rgba(255, 255, 255, 0.65),rgba(255, 255, 255, 0.65)), url(${background}) no-repeat 
      center center / 100% 100%
      fixed`,
-    // justifyContent: "space-evenly",
-    // alignContent: "center",
-    // alignItems: "center",
-    // textAlign: "center",
   },
   pageItem: {
     flex: "1",

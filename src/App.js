@@ -9,7 +9,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import './App.css';
+
 import Homepage from './pages/Homepage';
+import Resume from "./pages/Resume";
+import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
 
 
 
@@ -31,7 +35,10 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Homepage />
+        <Route exact path="/" component={Homepage} />
+        <Route path="/resume" component={Resume} />
+        <Route path="/portfolio" component={Portfolio} />
+        <Route path="/contacts" component={Contact} />
       </ThemeProvider>
     </>
   )

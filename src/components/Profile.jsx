@@ -9,12 +9,16 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(15),
     height: theme.spacing(15),
     marginTop: "0.5rem",
+    userSelect: "none",
+    pointerEvents: "none",
   },
   title: {
-    color: theme.palette.primary.dark,
+    // color: theme.palette.primary.dark,
+    color: "#3a4c5a",
     textAlign: "center",
     fontWeight: "100",
     margin: "1rem 1rem",
+    userSelect: "none",
   },
   subtitle: {
     color: theme.palette.primary.light,
@@ -22,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontWeight: "600",
     textTransform: "uppercase",
+    userSelect: "none",
   },
   typedContainer: {
     width: "100%",

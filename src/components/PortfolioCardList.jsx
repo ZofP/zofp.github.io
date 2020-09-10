@@ -57,16 +57,25 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
     alignSelf: "center",
+    userSelect: "none",
   },
   cardActions: {
     display: "flex",
     alignItems: "stretch",
     justifyContent: "space-around",
   },
+  cardImg: {
+    pointerEvents: "none",
+  },
 });
 
 const PortfolioCardList = () => {
-  const { cardContainer, cardListContainer, cardActions } = useStyles();
+  const {
+    cardContainer,
+    cardListContainer,
+    cardActions,
+    cardImg,
+  } = useStyles();
   return (
     <Box component="div" className={cardListContainer}>
       <Grid container justify="center" height="100%">
@@ -79,6 +88,7 @@ const PortfolioCardList = () => {
                 height="140"
                 image={image}
                 src={image}
+                className={cardImg}
               ></CardMedia>
               <CardContent>
                 <Typography gutterBottom variant="h5">
