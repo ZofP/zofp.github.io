@@ -29,32 +29,69 @@ const useStyles = makeStyles((theme) => ({
     userSelect: "none",
   },
   typedContainer: {
-    width: "100%",
+    minWidth: "30%",
     textAlign: "center",
     zIndex: 1,
   },
+  profileText: {
+    color: theme.palette.primary.dark,
+    fontStyle: "italic",
+    fontWeight: "500",
+    textAlign: "center",
+  },
 }));
 
-const Profile = () => {
-  const { avatar, title, subtitle, typedContainer } = useStyles();
+const Profile = ({ variant }) => {
+  const classes = useStyles();
 
   return (
-    <Box position="relative" className={typedContainer}>
+    <Box position="relative" className={classes.typedContainer}>
       <Grid container justify="center">
-        <Avatar className={avatar} src={avatarImage} alt="avatar" />
+        <Avatar className={classes.avatar} src={avatarImage} alt="avatar" />
       </Grid>
-      <Typography className={title} variant="h3">
+      <Typography className={classes.title} variant="h3">
         <Typed strings={["Petr Žofák"]} typeSpeed={40} />
       </Typography>
 
-      <Typography className={subtitle} variant="h5">
-        <Typed
-          strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
-          typeSpeed={60}
-          backSpeed={60}
-          loop
-        />
-      </Typography>
+      {(() => {
+        switch (variant) {
+          case "technologies":
+            return (
+              <Typography className={classes.subtitle} variant="h5">
+                <Typed
+                  strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
+                  typeSpeed={60}
+                  backSpeed={60}
+                  loop
+                />
+              </Typography>
+            );
+
+          case "profileText":
+            return (
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.profileText}
+              >
+                aspirující programátor webových aplikací
+              </Typography>
+            );
+
+          default:
+            break;
+        }
+      })()}
+      {/* {subtitleVisible && (
+        <Typography className={subtitle} variant="h5">
+          <Typed
+            strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
+            typeSpeed={60}
+            backSpeed={60}
+            loop
+          />
+        </Typography>
+      )} */}
     </Box>
   );
 };

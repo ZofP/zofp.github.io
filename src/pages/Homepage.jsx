@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
-import PortfolioCardList from "../components/PortfolioCardList";
 
 import background from "../images/background.jpg";
 import ParticlesBackground from "../components/ParticlesBackground";
@@ -45,13 +44,11 @@ const Homepage = () => {
   return (
     <>
       <Box component="div" className={classes.pageContainer}>
-        <Navbar alignSelf="stretch" />
+        <Navbar />
 
         <Box component="div" className={classes.pageItem}>
           <ParticlesBackground />
-          <Profile className={classes.pageSubitem} />
-
-          <PortfolioCardList className={classes.pageSubitem} />
+          <Profile className={classes.pageSubitem} variant="technologies" />
         </Box>
       </Box>
     </>

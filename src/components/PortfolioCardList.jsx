@@ -89,7 +89,7 @@ const PortfolioCardList = () => {
                 image={image}
                 src={image}
                 className={cardImg}
-              ></CardMedia>
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5">
                   {name}

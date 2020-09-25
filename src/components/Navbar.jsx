@@ -29,6 +29,10 @@ import {
 import avatar from "../images/avatar.png";
 
 const useStyles = makeStyles((theme) => ({
+  navbarContainer: {
+    zIndex: "2",
+    alignSelf: "stretch",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     color: theme.palette.secondary.light,
@@ -37,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     color: theme.palette.secondary.light,
     userSelect: "none",
+    textTransform: "uppercase",
+    fontWeight: "500",
   },
   menuDrawerContainer: {
     width: 250,
@@ -55,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "white",
     },
-    // pointerEvents: "none",
   },
 }));
 
@@ -90,7 +95,6 @@ const Navbar = () => {
   });
 
   const toggleDrawer = (open) => () => {
-    console.log(open);
     setState({ ...state, open: open });
   };
 
@@ -119,7 +123,7 @@ const Navbar = () => {
   );
 
   return (
-    <Box component="div" zIndex="2">
+    <Box component="div" className={classes.navbarContainer}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
