@@ -43,11 +43,11 @@ const Homepage = () => {
 
   return (
     <>
-      <Box component="div" className={classes.pageContainer}>
+      <Box component="div" className={classes.pageContainer} id="home">
         <Navbar />
 
         <Box component="div" className={classes.pageItem}>
-          <ParticlesBackground />
+          {/* <ParticlesBackground /> */}
           <Profile className={classes.pageSubitem} variant="technologies" />
         </Box>
       </Box>

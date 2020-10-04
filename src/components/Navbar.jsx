@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -32,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
   navbarContainer: {
     zIndex: "2",
     alignSelf: "stretch",
+  },
+  navbar: {
+    height: "3rem",
+    minHeight: "1rem !important",
+    color: theme.palette.primary.dark,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -68,22 +74,22 @@ const menuItems = [
   {
     itemIcon: <Home />,
     itemText: "Home",
-    itemPath: "/",
+    itemPath: "#home",
   },
   {
     itemIcon: <AssignmentInd />,
     itemText: "Resume",
-    itemPath: "/resume",
+    itemPath: "#resume",
   },
   {
     itemIcon: <Apps />,
     itemText: "Portfolio",
-    itemPath: "/portfolio",
+    itemPath: "#portfolio",
   },
   {
     itemIcon: <ContactMail />,
     itemText: "Contacts",
-    itemPath: "/contacts",
+    itemPath: "#contacts",
   },
 ];
 
@@ -98,6 +104,12 @@ const Navbar = () => {
     setState({ ...state, open: open });
   };
 
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset = -40;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  };
+
   const MenuDrawer = () => (
     <Box
       className={classes.menuDrawerContainer}
@@ -108,7 +120,14 @@ const Navbar = () => {
       <Divider />
       <List>
         {menuItems.map((item, key) => (
-          <ListItem button key={key} component={Link} to={item.itemPath}>
+          <ListItem
+            button
+            key={key}
+            component={Link}
+            smooth
+            to={item.itemPath}
+            scroll={(el) => scrollWithOffset(el)}
+          >
             <ListItemIcon className={classes.listItem}>
               {item.itemIcon}
             </ListItemIcon>
@@ -124,8 +143,8 @@ const Navbar = () => {
 
   return (
     <Box component="div" className={classes.navbarContainer}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="fixed">
+        <Toolbar className={classes.navbar}>
           <IconButton
             edge="start"
             className={classes.menuButton}

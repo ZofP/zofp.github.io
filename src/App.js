@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route } from "react-router-dom"
 import {
   CssBaseline,
 
@@ -13,7 +12,8 @@ import './App.css';
 import Homepage from './pages/Homepage';
 import Resume from "./pages/Resume";
 import Portfolio from "./pages/Portfolio";
-import Contact from "./pages/Contact";
+import Contacts from "./pages/Contacts";
+import ParticlesBackground from './components/ParticlesBackground';
 
 
 
@@ -36,11 +36,12 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <ParticlesBackground />
         <CssBaseline />
-        <Route exact path="/" component={Homepage} />
-        <Route path="/resume" component={Resume} />
-        <Route path="/portfolio" component={Portfolio} />
-        <Route path="/contacts" component={Contact} />
+        <Homepage />
+        <Resume />
+        <Portfolio />
+        <Contacts />
       </ThemeProvider>
     </>
   )

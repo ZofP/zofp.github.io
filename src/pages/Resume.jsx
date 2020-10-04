@@ -6,9 +6,10 @@ import { Box, Grid } from "@material-ui/core";
 
 import background from "../images/background.jpg";
 
-import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
 import TimeLine from "../components/TimeLine";
+import PageDivider from "../components/PageDivider";
+
 import ParticlesBackground from "../components/ParticlesBackground";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,10 +53,10 @@ const Resume = () => {
   const classes = useStyles();
   return (
     <>
-      <Box component="div" className={classes.pageContainer}>
-        <Navbar />
+      <Box component="div" className={classes.pageContainer} id="resume">
+        <PageDivider />
         <Box component="div" className={classes.pageContent}>
-          <ParticlesBackground />
+          {/* <ParticlesBackground /> */}
           <Grid container justify="center" height="100%">
             <Grid
               item

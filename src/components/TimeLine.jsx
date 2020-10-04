@@ -114,7 +114,7 @@ const TimeLine = () => {
   ];
   return (
     <VerticalTimeline className={classes.timeline}>
-      {timeLineItems.map((item) => (
+      {timeLineItems.map((item, key) => (
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentStyle={item.contentStyle}
@@ -123,6 +123,7 @@ const TimeLine = () => {
           dateClassName={classes.dates}
           iconStyle={item.iconStyle}
           icon={item.icon}
+          key={key}
         >
           <h3 className="vertical-timeline-element-title">{item.position}</h3>
           <h4 className="vertical-timeline-element-subtitle">{item.company}</h4>

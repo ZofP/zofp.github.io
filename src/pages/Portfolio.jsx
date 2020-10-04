@@ -4,11 +4,11 @@ import { Box, Typography } from "@material-ui/core/";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Navbar from "../components/Navbar";
 import PortfolioCardList from "../components/PortfolioCardList";
 
 import background from "../images/background.jpg";
 import ParticlesBackground from "../components/ParticlesBackground";
+import PageDivider from "../components/PageDivider";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     alignItems: "center",
     width: "100%",
+    position: "relative",
   },
   pageSubitem: {
     display: "flex",
@@ -46,11 +47,11 @@ const Portfolio = () => {
 
   return (
     <>
-      <Box component="div" className={classes.pageContainer}>
-        <Navbar />
+      <Box component="div" className={classes.pageContainer} id="portfolio">
+        <PageDivider />
 
         <Box component="div" className={classes.pageItem}>
-          <ParticlesBackground />
+          {/* <ParticlesBackground /> */}
           <Box
             component="div"
             className={`${classes.pageSubitem} ${classes.heading}`}
