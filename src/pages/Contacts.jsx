@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import emailjs from "emailjs-com";
 
 import { Box, Typography, TextField, Button } from "@material-ui/core";
 
@@ -78,15 +80,16 @@ const Contacts = () => {
 
   const InputFields = [
     {
-      fieldName: "Name",
-
+      fieldName: "name",
+      fieldLabel: "Name",
       required: true,
       style: {
         color: theme.palette.primary.main,
       },
     },
     {
-      fieldName: "Email",
+      fieldName: "email",
+      fieldLabel: "Email",
       multiline: false,
       required: true,
       style: {
@@ -94,7 +97,8 @@ const Contacts = () => {
       },
     },
     {
-      fieldName: "Company Name",
+      fieldName: "companyName",
+      fieldLabel: "Company Name",
       multiline: false,
       style: {
         color: theme.palette.primary.main,
@@ -102,7 +106,8 @@ const Contacts = () => {
     },
 
     {
-      fieldName: "Message",
+      fieldName: "message",
+      fieldLabel: "Message",
       multiline: true,
       required: true,
       style: {
@@ -110,6 +115,27 @@ const Contacts = () => {
       },
     },
   ];
+  const [state, setState] = useState({});
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .send(
+        "gmail",
+        process.env.REACT_APP_TEMPLATE_ID,
+        state,
+        process.env.REACT_APP_USER_ID
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        (error) => {
+          console.log("FAILED...", error);
+        }
+      );
+  };
+
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="contacts">
@@ -123,29 +149,45 @@ const Contacts = () => {
             <Typography variant="h2">CONTACT ME</Typography>
 
             {InputFields.map(
-              ({
-                required = false,
-                multiline = false,
-                fieldName,
-                style: { color = theme.palette.primary.main, height = "auto" },
-              }) => (
+              (
+                {
+                  required = false,
+                  multiline = false,
+                  fieldName,
+                  fieldLabel,
+                  style: {
+                    color = theme.palette.primary.main,
+                    height = "auto",
+                  },
+                },
+                key
+              ) => (
                 <InputField
+                  key={key}
                   required={required}
                   fullWidth={true}
-                  label={fieldName}
+                  label={fieldLabel}
                   variant="outlined"
                   inputProps={{ style: { color, height } }}
                   margin="dense"
                   size="medium"
                   multiline={multiline}
+                  onChange={(event) => {
+                    setState({ ...state, [fieldName]: event.target.value });
+                    console.log(state);
+                  }}
+                  name={fieldName}
+                  // inputRef={register}
                 />
               )
             )}
+
             <Button
               className={classes.button}
               variant="outlined"
               fullWidth={true}
               endIcon={<SendIcon />}
+              onClick={(e) => sendEmail(e)}
             >
               SEND
             </Button>
