@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { useForm } from "react-hook-form";
+import isEmail from "validator/lib/isEmail";
+
 import emailjs from "emailjs-com";
 
 import { Box, Typography, TextField, Button } from "@material-ui/core";
@@ -117,6 +120,14 @@ const Contacts = () => {
   ];
   const [state, setState] = useState({});
 
+  const { register, handleSubmit, errors, formState } = useForm({
+    mode: "onBlur",
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
@@ -168,7 +179,13 @@ const Contacts = () => {
                   fullWidth={true}
                   label={fieldLabel}
                   variant="outlined"
-                  inputProps={{ style: { color, height } }}
+                  inputProps={{
+                    style: {
+                      color,
+                      height,
+                      borderColor: errors.email && "red",
+                    },
+                  }}
                   margin="dense"
                   size="medium"
                   multiline={multiline}
@@ -177,7 +194,10 @@ const Contacts = () => {
                     console.log(state);
                   }}
                   name={fieldName}
-                  // inputRef={register}
+                  inputRef={register({
+                    required: { required },
+                    validate: (input) => isEmail(input),
+                  })}
                 />
               )
             )}
@@ -188,6 +208,7 @@ const Contacts = () => {
               fullWidth={true}
               endIcon={<SendIcon />}
               onClick={(e) => sendEmail(e)}
+              disabled={formState.isSubmitting}
             >
               SEND
             </Button>
