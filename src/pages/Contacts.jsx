@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 
 import emailjs from "emailjs-com";
 
-import { Box, Typography, TextField, Button } from "@material-ui/core";
+import { Box, Typography, Button } from "@material-ui/core";
 
-import { makeStyles, withStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import SendIcon from "@material-ui/icons/Send";
 
 import background from "../images/background.jpg";
 
 import PageDivider from "../components/PageDivider";
+
+import InputField from "../components/InputField";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -52,31 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InputField = withStyles((theme) => ({
-  root: {
-    "& label.Mui-focused": {
-      color: theme.palette.primary.dark,
-      fontSize: "1rem !important",
-      fontWeight: "bold !important",
-    },
-    "& label": {
-      color: theme.palette.primary.main,
-      fontWeight: "bold",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldSet": {
-        borderColor: theme.palette.primary.main,
-      },
-      "&:hover fieldSet": {
-        borderColor: theme.palette.primary.dark,
-      },
-      "&.Mui-focused fieldSet": {
-        borderColor: theme.palette.primary.dark,
-      },
-    },
-  },
-}))(TextField);
-
 const Contacts = () => {
   const classes = useStyles();
   const theme = useTheme();
@@ -114,14 +91,22 @@ const Contacts = () => {
       multiline: true,
       required: true,
       style: {
+        color: theme.palette.primary.main,
         height: "6rem",
       },
     },
   ];
-  const [state, setState] = useState({});
 
-  const { register, handleSubmit, errors, formState } = useForm({
-    mode: "onBlur",
+  const defaultInputValues = InputFields.reduce(
+    (acc, cur) => ({ ...acc, [cur.fieldName]: "" }),
+    {}
+  );
+
+  const [state, setState] = useState(defaultInputValues);
+
+  const methods = useForm({
+    defaultValues: defaultInputValues,
+    mode: "onChange",
   });
 
   const onSubmit = (data) => {
@@ -159,59 +144,65 @@ const Contacts = () => {
           >
             <Typography variant="h2">CONTACT ME</Typography>
 
-            {InputFields.map(
-              (
-                {
-                  required = false,
-                  multiline = false,
-                  fieldName,
-                  fieldLabel,
-                  style: {
-                    color = theme.palette.primary.main,
-                    height = "auto",
+            <form novalidate onSubmit={() => methods.handleSubmit(onSubmit)}>
+              {InputFields.map(
+                (
+                  {
+                    required = false,
+                    multiline = false,
+                    fieldName,
+                    fieldLabel,
+                    style,
                   },
-                },
-                key
-              ) => (
-                <InputField
-                  key={key}
-                  required={required}
-                  fullWidth={true}
-                  label={fieldLabel}
-                  variant="outlined"
-                  inputProps={{
-                    style: {
-                      color,
-                      height,
-                      borderColor: errors.email && "red",
-                    },
-                  }}
-                  margin="dense"
-                  size="medium"
-                  multiline={multiline}
-                  onChange={(event) => {
-                    setState({ ...state, [fieldName]: event.target.value });
-                    console.log(state);
-                  }}
-                  name={fieldName}
-                  inputRef={register({
-                    required: { required },
-                    validate: (input) => isEmail(input),
-                  })}
-                />
-              )
-            )}
-
-            <Button
-              className={classes.button}
-              variant="outlined"
-              fullWidth={true}
-              endIcon={<SendIcon />}
-              onClick={(e) => sendEmail(e)}
-              disabled={formState.isSubmitting}
-            >
-              SEND
-            </Button>
+                  key
+                ) => (
+                  <Controller
+                    as={InputField}
+                    control={methods.control}
+                    key={key}
+                    required={required}
+                    fullWidth={true}
+                    label={fieldLabel}
+                    variant="outlined"
+                    inputProps={{
+                      style: {
+                        ...style,
+                        borderColor: methods.errors[fieldName] && "red",
+                      },
+                      name: fieldName,
+                      onChange: (event) => {
+                        setState({ ...state, [fieldName]: event.target.value });
+                        console.log(state);
+                      },
+                    }}
+                    margin="dense"
+                    size="medium"
+                    multiline={multiline}
+                    name={fieldName}
+                    rules={{ required: "THIS FIELD IS REQUIRED" }}
+                    error={methods.errors[fieldName]}
+                    helperText={
+                      methods.errors[fieldName]
+                        ? methods.errors[fieldName].message
+                        : ""
+                    }
+                  />
+                )
+              )}
+              <Button
+                type="submit"
+                className={classes.button}
+                variant="outlined"
+                fullWidth={true}
+                endIcon={<SendIcon />}
+                onClick={(e) => {
+                  sendEmail(e);
+                }}
+                disabled={!methods.formState.isValid}
+              >
+                SEND
+              </Button>
+            </form>
           </Box>
         </Box>
       </Box>
