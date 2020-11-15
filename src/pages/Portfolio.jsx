@@ -58,7 +58,9 @@ const Portfolio = () => {
           >
             <Typography variant="h2">MY PROJECTS</Typography>
           </Box>
-          <PortfolioCardList className={classes.pageSubitem} />
+          <Box component="div" className={classes.pageSubitem}>
+            <PortfolioCardList />
+          </Box>
         </Box>
       </Box>
     </>

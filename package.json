@@ -13,6 +13,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.9.2",
+    "react-icons": "^3.11.0",
     "react-particles-js": "^3.3.0",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.1.0",

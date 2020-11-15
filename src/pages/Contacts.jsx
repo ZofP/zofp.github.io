@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-    background: `linear-gradient(rgba(255, 255, 255, 0.85),rgba(255, 255, 255, 0.85)), url(${background}) no-repeat
+    background: `linear-gradient(rgba(255, 255, 255, 0.90),rgba(255, 255, 255, 0.90)), url(${background}) no-repeat
      center center / 100% 100%
      fixed`,
   },
@@ -144,7 +144,7 @@ const Contacts = () => {
           >
             <Typography variant="h2">CONTACT ME</Typography>
 
-            <form novalidate onSubmit={() => methods.handleSubmit(onSubmit)}>
+            <form noValidate onSubmit={() => methods.handleSubmit(onSubmit)}>
               {InputFields.map(
                 (
                   {
@@ -173,14 +173,24 @@ const Contacts = () => {
                       onChange: (event) => {
                         setState({ ...state, [fieldName]: event.target.value });
                         console.log(state);
+                        console.log(methods.errors);
                       },
                     }}
                     margin="dense"
                     size="medium"
                     multiline={multiline}
                     name={fieldName}
-                    rules={{ required: "THIS FIELD IS REQUIRED" }}
-                    error={methods.errors[fieldName]}
+                    rules={{
+                      required: {
+                        value: required,
+                        message: "THIS FIELD IS REQUIRED",
+                      },
+                      validate: (input) =>
+                        !isEmail(input) && fieldName === "email"
+                          ? "THIS FIELD MUST BE IN EMAIL FORMAT"
+                          : undefined,
+                    }}
+                    error={Boolean(methods.errors[fieldName])}
                     helperText={
                       methods.errors[fieldName]
                         ? methods.errors[fieldName].message
