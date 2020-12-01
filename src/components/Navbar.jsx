@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// import { Link } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,6 +24,7 @@ import {
   Home,
   ContactMail,
   Menu,
+  Close,
 } from "@material-ui/icons";
 
 import avatar from "../images/avatar.png";
@@ -38,10 +38,23 @@ const useStyles = makeStyles((theme) => ({
     height: "3rem",
     minHeight: "1rem !important",
     color: theme.palette.primary.dark,
+    alignSelf: "flex-end",
   },
   menuButton: {
     marginRight: theme.spacing(2),
     color: theme.palette.secondary.light,
+  },
+  closeButton: {
+    display: "flex",
+    flexDirection: "column",
+    margin: theme.spacing(2),
+    color: theme.palette.secondary.light,
+    "&:hover": {
+      color: theme.palette.primary.dark,
+      cursor: "pointer",
+    },
+    transition: "all 0.3s",
+    alignItems: "flex-end",
   },
   title: {
     flexGrow: 1,
@@ -116,6 +129,9 @@ const Navbar = () => {
       component="div"
       onClick={toggleDrawer(false)}
     >
+      <Box className={classes.closeButton} component="div">
+        <Close />
+      </Box>
       <Avatar className={classes.avatar} src={avatar} alt="avatar" />
       <Divider />
       <List>
@@ -144,9 +160,11 @@ const Navbar = () => {
   return (
     <Box component="div" className={classes.navbarContainer}>
       <AppBar position="fixed">
-        <Toolbar className={classes.navbar}>
+        <Toolbar className={classes.navbar} disableGutters>
+          <Typography variant="h6" className={classes.title}>
+            Menu
+          </Typography>
           <IconButton
-            edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
@@ -154,10 +172,11 @@ const Navbar = () => {
           >
             <Menu />
           </IconButton>
-          <Typography variant="h5" className={classes.title}>
-            Menu
-          </Typography>
-          <Drawer anchor="left" open={state.open} onClose={toggleDrawer(false)}>
+          <Drawer
+            anchor="right"
+            open={state.open}
+            onClose={toggleDrawer(false)}
+          >
             {MenuDrawer()}
           </Drawer>
         </Toolbar>

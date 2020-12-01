@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   CssBaseline,
-
 } from '@material-ui/core/'
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -23,10 +22,22 @@ const theme = createMuiTheme({
       main: "#AF0001",
     },
     secondary: {
-      // main: "#B0BEC5",
       main: "#ffba94",
       light: "#fffad1"
     },
+  },
+  typography: {
+    fontFamily: [
+      // 'Kanit',
+      // "'Merriweather Sans'",
+      // 'Poppins',
+      // "'Red Hat Display'",
+      'Saira',
+      // 'Sarala',
+      // 'Ubuntu',
+      // 'Varela',
+
+    ].join(','),
   },
 });
 

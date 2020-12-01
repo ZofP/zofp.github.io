@@ -13,10 +13,9 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
   },
   title: {
-    // color: theme.palette.primary.dark,
     color: "#3a4c5a",
     textAlign: "center",
-    fontWeight: "100",
+    fontWeight: "300",
     margin: "1rem 1rem",
     userSelect: "none",
   },
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = ({ variant }) => {
+const Profile = () => {
   const classes = useStyles();
 
   return (
@@ -53,45 +52,14 @@ const Profile = ({ variant }) => {
         <Typed strings={["Petr Žofák"]} typeSpeed={40} />
       </Typography>
 
-      {(() => {
-        switch (variant) {
-          case "technologies":
-            return (
-              <Typography className={classes.subtitle} variant="h5">
-                <Typed
-                  strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
-                  typeSpeed={60}
-                  backSpeed={60}
-                  loop
-                />
-              </Typography>
-            );
-
-          case "profileText":
-            return (
-              <Typography
-                variant="h6"
-                component="h6"
-                className={classes.profileText}
-              >
-                aspirující programátor webových aplikací
-              </Typography>
-            );
-
-          default:
-            break;
-        }
-      })()}
-      {/* {subtitleVisible && (
-        <Typography className={subtitle} variant="h5">
-          <Typed
-            strings={["HTML5 | CSS3 | JavaScript", "React.js | Redux"]}
-            typeSpeed={60}
-            backSpeed={60}
-            loop
-          />
-        </Typography>
-      )} */}
+      <Typography className={classes.subtitle} variant="h5">
+        <Typed
+          strings={["aspiring web developer", "React | JavaScript"]}
+          typeSpeed={60}
+          backSpeed={60}
+          loop
+        />
+      </Typography>
     </Box>
   );
 };

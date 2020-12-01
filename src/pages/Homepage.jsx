@@ -8,7 +8,6 @@ import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
 
 import background from "../images/background.jpg";
-import ParticlesBackground from "../components/ParticlesBackground";
 
 const useStyles = makeStyles({
   pageContainer: {
@@ -16,9 +15,8 @@ const useStyles = makeStyles({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-    background: `linear-gradient(rgba(255, 255, 255, 0.65),rgba(255, 255, 255, 0.65)), url(${background}) no-repeat 
-     center center / 100% 100%
-     fixed`,
+
+    background: `rgba(255, 255, 255, 1)`,
   },
   pageItem: {
     flex: "1",
@@ -47,7 +45,6 @@ const Homepage = () => {
         <Navbar />
 
         <Box component="div" className={classes.pageItem}>
-          {/* <ParticlesBackground /> */}
           <Profile className={classes.pageSubitem} variant="technologies" />
         </Box>
       </Box>

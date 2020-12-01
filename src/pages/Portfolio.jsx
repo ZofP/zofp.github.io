@@ -7,8 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PortfolioCardList from "../components/PortfolioCardList";
 
 import background from "../images/background.jpg";
-import ParticlesBackground from "../components/ParticlesBackground";
 import PageDivider from "../components/PageDivider";
+import Zoom from "react-reveal/Zoom";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -16,29 +16,27 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-    background: `linear-gradient(rgba(255, 255, 255, 0.65),rgba(255, 255, 255, 0.65)), url(${background}) no-repeat
-     center center / 100% 100%
-     fixed`,
+
+    background: `rgba(255, 255, 255, 1)`,
   },
   pageItem: {
-    flex: "1",
+    flex: "1 0 0",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-around",
     flexDirection: "column",
     alignSelf: "center",
     textAlign: "center",
     alignItems: "center",
     width: "100%",
     position: "relative",
-  },
-  pageSubitem: {
-    display: "flex",
-    flexDirection: "column",
-    flex: "1",
-    justifyContent: "center",
+    marginBottom: "1rem",
   },
   heading: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     color: theme.palette.primary.dark,
+    margin: "1rem",
   },
 }));
 
@@ -49,19 +47,14 @@ const Portfolio = () => {
     <>
       <Box component="div" className={classes.pageContainer} id="portfolio">
         <PageDivider />
-
-        <Box component="div" className={classes.pageItem}>
-          {/* <ParticlesBackground /> */}
-          <Box
-            component="div"
-            className={`${classes.pageSubitem} ${classes.heading}`}
-          >
-            <Typography variant="h2">MY PROJECTS</Typography>
-          </Box>
-          <Box component="div" className={classes.pageSubitem}>
+        <Zoom>
+          <Box component="div" className={classes.pageItem}>
+            <Box component="div" className={classes.heading}>
+              <Typography variant="h3">MY PROJECTS</Typography>
+            </Box>
             <PortfolioCardList />
           </Box>
-        </Box>
+        </Zoom>
       </Box>
     </>
   );

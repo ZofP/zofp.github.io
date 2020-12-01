@@ -21,91 +21,106 @@ import { SiJavascript as JSicon } from "react-icons/si";
 import { SiReact as REACTicon } from "react-icons/si";
 
 import backroads from "../images/backroads.jpeg";
-import coffeeshop from "../images/coffeeshop.jpeg";
-import pixabay from "../images/pixabay.png";
-// import project4 from "../images/placeimg_345_140_tech.jpg";
+import coffeebar from "../images/coffeebar.jpeg";
+import pixabay from "../images/pixabay.jpg";
+import avatarImage from "../images/avatar.png";
 
 const projectDetails = [
   {
     name: "Backroads Project",
     image: backroads,
     text:
-      "Webpage of a travel provider company. Made as a part of an online course.",
+      "Web page of a fictional travel agency. Made as a part of an online course.",
     icons: [
       { title: "HTML", component: <HTMLicon /> },
       { title: "CSS", component: <CSSicon /> },
       { title: "JavaScript", component: <JSicon /> },
     ],
+    source: "https://github.com/ZofP/backroads-JS-project",
+    demo: "https://zofp.github.io/backroads-JS-project/index.html",
   },
   {
-    name: "Coffee Shop Project",
-    image: coffeeshop,
+    name: "Coffee Bar Project",
+    image: coffeebar,
     text:
-      "Webpage of a travel provider company. Main focus on CSS, with a couple of JS effects. Made as a part of an online course.",
+      "Web page of a fictional coffee bar. Main focus on CSS, with a couple of JS effects. Made as a part of an online course.",
     icons: [
       { title: "HTML", component: <HTMLicon /> },
       { title: "CSS", component: <CSSicon /> },
       { title: "JavaScript", component: <JSicon /> },
     ],
+    source: "https://github.com/ZofP/coffee-bar-JS-project",
+    demo: "https://zofp.github.io/coffee-bar-JS-project/",
   },
   {
     name: "Search Pixabay Pictures Project",
     image: pixabay,
     text:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eligendi dolore minima voluptatibus nulla maxime, vero illum aliquam, optio quis reiciendis mollitia natus dignissimos odit aperiam quaerat temporibus deleniti officiis.",
-    icons: [{ title: "React JS", component: <REACTicon /> }],
+      "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
+    icons: [{ title: "React", component: <REACTicon /> }],
+    source: "https://github.com/ZofP/search-pixabay-pictures",
+    demo: "https://zofp.github.io/search-pixabay-pictures/",
   },
-  // {
-  //   name: "Project 4",
-  //   image: project4,
-  //   text:
-  //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eligendi dolore minima voluptatibus nulla maxime, vero illum aliquam, optio quis reiciendis mollitia natus dignissimos odit aperiam quaerat temporibus deleniti officiis.",
-  //   icons: [<HTMLicon />, <CSSicon />, <REACTicon />],
-  // },
+  {
+    name: "Personal Portfolio \n (This Page)",
+    image: avatarImage,
+    text: "My personal portfolio web page. Made from scratch.",
+    icons: [{ title: "React", component: <REACTicon /> }],
+    source: "/",
+    demo: "/",
+  },
 ];
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   cardListContainer: {
     maxWidth: "100vw",
-    height: "50%",
     zIndex: "0",
     display: "flex",
-    justifyContent: "space-between",
-    alignSelf: "center",
+
     userSelect: "none",
-    marginBottom: "1rem",
+
+    [theme.breakpoints.between("md", "sm")]: {
+      padding: "0",
+      margin: "0",
+    },
   },
   cardContainer: {
-    margin: "0 0.5rem 0.5rem 0.5rem",
-    // margin: "0 1rem 1rem 1rem",
-    // justifyContent: "center",
+    margin: "0.5rem",
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    background: "rgba(204, 204, 204, 0.2)",
+    transition: "0.2s",
+    "&:hover": {
+      transform: "scale(1.05)",
+      background: theme.palette.secondary.light,
+    },
+    paddingBottom: "0.5rem",
   },
   cardContent: {
     display: "flex",
-    alignItems: "stretch",
     flexDirection: "column",
+    flex: "1",
     justifyContent: "space-between",
   },
   cardActions: {
     display: "flex",
     alignItems: "stretch",
     justifyContent: "space-around",
+    flex: "0 0 5rem",
   },
   cardImg: {
     pointerEvents: "none",
   },
   cardIconsContainer: {
     display: "flex",
-    width: "30%",
-    justifyContent: "space-around",
+    width: "60%",
+    justifyContent: "space-evenly",
     margin: "0 auto 0.5rem auto",
     fontSize: "1.5rem",
   },
-});
+}));
 
 const PortfolioCardList = () => {
   const {
@@ -116,54 +131,78 @@ const PortfolioCardList = () => {
     cardImg,
     cardIconsContainer,
   } = useStyles();
-  return (
-    <Box component="div" className={cardListContainer}>
-      <Grid container justify="center" height="100%">
-        {projectDetails.map(({ name, image, text, icons }, key) => (
-          <Grid item xs={8} sm={6} md={3} key={key}>
-            <Card className={cardContainer}>
-              <CardMedia
-                component="img"
-                alt={name}
-                // height="140"
-                height="220"
-                image={image}
-                src={image}
-                className={cardImg}
-              />
-              <CardContent className={cardContent}>
-                <Typography gutterBottom variant="h5">
-                  {name}
-                </Typography>
-                <Box component="div" className={cardIconsContainer}>
-                  {icons.map((icon) => (
-                    <Tooltip
-                      title={icon.title}
-                      arrow
-                      TransitionComponent={Zoom}
-                    >
-                      <Box component="div">{icon.component}</Box>
-                    </Tooltip>
-                  ))}
-                </Box>
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {text}
-                </Typography>
-              </CardContent>
-              <CardActions className={cardActions}>
-                <Button variant="contained" size="small" color="secondary">
-                  Source code on Github
-                </Button>
-                <Button variant="contained" size="small" color="primary">
-                  Live demo
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+  const ButtonBehavior = React.forwardRef((props, ref) => (
+    <Button ref={ref} {...props} />
+  ));
+
+  return (
+    <Grid container justify="center" className={cardListContainer}>
+      {projectDetails.map(({ name, image, text, icons, source, demo }, key) => (
+        <Grid
+          item
+          xs={8}
+          sm={8}
+          md={2}
+          key={key}
+          className={cardContainer}
+          component={Card}
+        >
+          <CardMedia
+            component="img"
+            alt={name}
+            height="220"
+            image={image}
+            src={image}
+            className={cardImg}
+          />
+          <CardContent className={cardContent}>
+            <Typography gutterBottom variant="h5">
+              {name}
+            </Typography>
+            <Box component="div" className={cardIconsContainer}>
+              {icons.map((icon, key) => (
+                <Tooltip
+                  title={icon.title}
+                  arrow
+                  TransitionComponent={Zoom}
+                  key={key}
+                >
+                  <Box component="div">{icon.component}</Box>
+                </Tooltip>
+              ))}
+            </Box>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              {text}
+            </Typography>
+          </CardContent>
+          <CardActions className={cardActions}>
+            <Button
+              href={source}
+              target="_blank"
+              variant="contained"
+              size="small"
+              color="secondary"
+            >
+              Source code on Github
+            </Button>
+
+            {name !== "This Page (Personal Portfolio)" && (
+              <Button
+                href={demo}
+                target="_blank"
+                variant="contained"
+                size="small"
+                color="primary"
+              >
+                Live demo
+              </Button>
+            )}
+          </CardActions>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

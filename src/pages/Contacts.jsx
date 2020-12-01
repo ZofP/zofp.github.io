@@ -6,6 +6,7 @@ import isEmail from "validator/lib/isEmail";
 import emailjs from "emailjs-com";
 
 import { Box, Typography, Button } from "@material-ui/core";
+import Zoom from "react-reveal/Zoom";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -23,12 +24,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-    background: `linear-gradient(rgba(255, 255, 255, 0.90),rgba(255, 255, 255, 0.90)), url(${background}) no-repeat
-     center center / 100% 100%
-     fixed`,
+    // background: `linear-gradient(rgba(255, 255, 255, 0.90),rgba(255, 255, 255, 0.90)), url(${background}) no-repeat
+    //  center center / 100% 100%
+    //  fixed`,
+    background: `rgba(255, 255, 255, 1)`,
   },
   pageItem: {
-    flex: "1",
+    flex: "1 0 0",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
@@ -37,20 +39,28 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "100%",
     position: "relative",
+    justifyContent: "space-evenly",
   },
-  pageSubitem: {
-    display: "flex",
-    flexDirection: "column",
-    flex: "1",
-    justifyContent: "center",
-  },
+
   heading: {
     color: theme.palette.primary.dark,
+    display: "flex",
+    flexDirection: "column",
+    // flex: "1 0 0",
+    justifyContent: "center",
+    margin: "1rem",
+  },
+  form: {
+    // flex: "1 0 0",
+    display: "flex",
+    alignItems: "center",
+    margin: "0 3rem",
   },
   button: {
-    marginTop: "1rem",
+    marginTop: "2rem",
     color: theme.palette.primary.dark,
     borderColor: theme.palette.primary.dark,
+    height: "5rem",
   },
 }));
 
@@ -136,85 +146,87 @@ const Contacts = () => {
     <>
       <Box component="div" className={classes.pageContainer} id="contacts">
         <PageDivider />
-
-        <Box component="div" className={classes.pageItem}>
-          <Box
-            component="div"
-            className={`${classes.pageSubitem} ${classes.heading}`}
-          >
-            <Typography variant="h2">CONTACT ME</Typography>
-
-            <form noValidate onSubmit={() => methods.handleSubmit(onSubmit)}>
-              {InputFields.map(
-                (
-                  {
-                    required = false,
-                    multiline = false,
-                    fieldName,
-                    fieldLabel,
-                    style,
-                  },
-                  key
-                ) => (
-                  <Controller
-                    as={InputField}
-                    control={methods.control}
-                    key={key}
-                    required={required}
-                    fullWidth={true}
-                    label={fieldLabel}
-                    variant="outlined"
-                    inputProps={{
-                      style: {
-                        ...style,
-                        borderColor: methods.errors[fieldName] && "red",
-                      },
-                      name: fieldName,
-                      onChange: (event) => {
-                        setState({ ...state, [fieldName]: event.target.value });
-                        console.log(state);
-                        console.log(methods.errors);
-                      },
-                    }}
-                    margin="dense"
-                    size="medium"
-                    multiline={multiline}
-                    name={fieldName}
-                    rules={{
-                      required: {
-                        value: required,
-                        message: "THIS FIELD IS REQUIRED",
-                      },
-                      validate: (input) =>
-                        !isEmail(input) && fieldName === "email"
-                          ? "THIS FIELD MUST BE IN EMAIL FORMAT"
-                          : undefined,
-                    }}
-                    error={Boolean(methods.errors[fieldName])}
-                    helperText={
-                      methods.errors[fieldName]
-                        ? methods.errors[fieldName].message
-                        : ""
-                    }
-                  />
-                )
-              )}
-              <Button
-                type="submit"
-                className={classes.button}
-                variant="outlined"
-                fullWidth={true}
-                endIcon={<SendIcon />}
-                onClick={(e) => {
-                  sendEmail(e);
-                }}
-                disabled={!methods.formState.isValid}
-              >
-                SEND
-              </Button>
-            </form>
+        <Zoom>
+          <Box component="div" className={classes.pageItem}>
+            <Box component="div" className={classes.heading}>
+              <Typography variant="h3">CONTACT ME</Typography>
+            </Box>
+            <Box component="div" className={classes.form}>
+              <form noValidate onSubmit={() => methods.handleSubmit(onSubmit)}>
+                {InputFields.map(
+                  (
+                    {
+                      required = false,
+                      multiline = false,
+                      fieldName,
+                      fieldLabel,
+                      style,
+                    },
+                    key
+                  ) => (
+                    <Controller
+                      as={InputField}
+                      control={methods.control}
+                      key={key}
+                      required={required}
+                      fullWidth={true}
+                      label={fieldLabel}
+                      variant="outlined"
+                      inputProps={{
+                        style: {
+                          ...style,
+                          borderColor: methods.errors[fieldName] && "red",
+                        },
+                        name: fieldName,
+                        onChange: (event) => {
+                          setState({
+                            ...state,
+                            [fieldName]: event.target.value,
+                          });
+                          console.log(state);
+                          console.log(methods.errors);
+                        },
+                      }}
+                      margin="dense"
+                      size="medium"
+                      multiline={multiline}
+                      name={fieldName}
+                      rules={{
+                        required: {
+                          value: required,
+                          message: "THIS FIELD IS REQUIRED",
+                        },
+                        validate: (input) =>
+                          !isEmail(input) && fieldName === "email"
+                            ? "THIS FIELD MUST BE IN EMAIL FORMAT"
+                            : undefined,
+                      }}
+                      error={Boolean(methods.errors[fieldName])}
+                      helperText={
+                        methods.errors[fieldName]
+                          ? methods.errors[fieldName].message
+                          : ""
+                      }
+                    />
+                  )
+                )}
+                <Button
+                  type="submit"
+                  className={classes.button}
+                  variant="outlined"
+                  fullWidth={true}
+                  endIcon={<SendIcon />}
+                  onClick={(e) => {
+                    sendEmail(e);
+                  }}
+                  disabled={!methods.formState.isValid}
+                >
+                  SEND
+                </Button>
+              </form>
+            </Box>
           </Box>
-        </Box>
+        </Zoom>
       </Box>
     </>
   );
