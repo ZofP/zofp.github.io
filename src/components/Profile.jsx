@@ -4,6 +4,8 @@ import { Typography, Avatar, Grid, Box } from "@material-ui/core";
 import Typed from "react-typed";
 import avatarImage from "../images/avatar.png";
 
+import { Slide, Bounce } from "react-reveal";
+
 const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(15),
@@ -31,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "30%",
     textAlign: "center",
     zIndex: 1,
+    width: "100%",
   },
   profileText: {
     color: theme.palette.primary.dark,
@@ -38,28 +41,36 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     textAlign: "center",
   },
+  slide: {
+    width: "100%",
+  },
 }));
 
 const Profile = () => {
   const classes = useStyles();
 
   return (
-    <Box position="relative" className={classes.typedContainer}>
-      <Grid container justify="center">
-        <Avatar className={classes.avatar} src={avatarImage} alt="avatar" />
-      </Grid>
-      <Typography className={classes.title} variant="h3">
-        <Typed strings={["Petr Žofák"]} typeSpeed={40} />
-      </Typography>
+    <Box className={classes.typedContainer}>
+      <Box className={classes.slide}>
+        <Bounce right delay={200}>
+          <Grid container justify="center">
+            <Avatar className={classes.avatar} src={avatarImage} alt="avatar" />
+          </Grid>
+          <Typography className={classes.title} variant="h3">
+            <Typed strings={["Petr Žofák"]} typeSpeed={40} startDelay={700} />
+          </Typography>
 
-      <Typography className={classes.subtitle} variant="h5">
-        <Typed
-          strings={["aspiring web developer", "React | JavaScript"]}
-          typeSpeed={60}
-          backSpeed={60}
-          loop
-        />
-      </Typography>
+          <Typography className={classes.subtitle} variant="h5">
+            <Typed
+              strings={["aspiring web developer", "React | JavaScript"]}
+              typeSpeed={60}
+              backSpeed={60}
+              startDelay={700}
+              loop
+            />
+          </Typography>
+        </Bounce>
+      </Box>
     </Box>
   );
 };

@@ -4,6 +4,8 @@ import { Box } from "@material-ui/core/";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import { Slide } from "react-reveal";
+
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
 
@@ -42,8 +44,6 @@ const Homepage = () => {
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="home">
-        <Navbar />
-
         <Box component="div" className={classes.pageItem}>
           <Profile className={classes.pageSubitem} variant="technologies" />
         </Box>

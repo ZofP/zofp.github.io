@@ -27,28 +27,33 @@ import {
   Close,
 } from "@material-ui/icons";
 
+import { Slide, Bounce } from "react-reveal";
+
 import avatar from "../images/avatar.png";
 
 const useStyles = makeStyles((theme) => ({
   navbarContainer: {
     zIndex: "2",
     alignSelf: "stretch",
+    background: theme.palette.primary.main,
+    position: "fixed",
+    width: "100%",
   },
   navbar: {
     height: "3rem",
     minHeight: "1rem !important",
-    color: theme.palette.primary.dark,
+    // color: theme.palette.primary.dark,
     alignSelf: "flex-end",
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
   },
   closeButton: {
     display: "flex",
     flexDirection: "column",
-    margin: theme.spacing(2),
-    color: theme.palette.secondary.light,
+    margin: "1rem 1rem 1rem auto",
+    color: theme.palette.secondary.main,
     "&:hover": {
       color: theme.palette.primary.dark,
       cursor: "pointer",
@@ -58,10 +63,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
     userSelect: "none",
     textTransform: "uppercase",
     fontWeight: "500",
+    textAlign: "end",
   },
   menuDrawerContainer: {
     width: 250,
@@ -76,9 +82,9 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
   },
   listItem: {
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
     "&:hover": {
-      color: "white",
+      color: theme.palette.secondary.light,
     },
   },
 }));
@@ -124,14 +130,8 @@ const Navbar = () => {
   };
 
   const MenuDrawer = () => (
-    <Box
-      className={classes.menuDrawerContainer}
-      component="div"
-      onClick={toggleDrawer(false)}
-    >
-      <Box className={classes.closeButton} component="div">
-        <Close />
-      </Box>
+    <Box className={classes.menuDrawerContainer} component="div">
+      <Close className={classes.closeButton} onClick={toggleDrawer(false)} />
       <Avatar className={classes.avatar} src={avatar} alt="avatar" />
       <Divider />
       <List>
@@ -143,6 +143,7 @@ const Navbar = () => {
             smooth
             to={item.itemPath}
             scroll={(el) => scrollWithOffset(el)}
+            onClick={toggleDrawer(false)}
           >
             <ListItemIcon className={classes.listItem}>
               {item.itemIcon}
@@ -159,7 +160,7 @@ const Navbar = () => {
 
   return (
     <Box component="div" className={classes.navbarContainer}>
-      <AppBar position="fixed">
+      <Bounce left>
         <Toolbar className={classes.navbar} disableGutters>
           <Typography variant="h6" className={classes.title}>
             Menu
@@ -180,7 +181,7 @@ const Navbar = () => {
             {MenuDrawer()}
           </Drawer>
         </Toolbar>
-      </AppBar>
+      </Bounce>
     </Box>
   );
 };

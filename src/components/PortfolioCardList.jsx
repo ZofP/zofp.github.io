@@ -132,10 +132,6 @@ const PortfolioCardList = () => {
     cardIconsContainer,
   } = useStyles();
 
-  const ButtonBehavior = React.forwardRef((props, ref) => (
-    <Button ref={ref} {...props} />
-  ));
-
   return (
     <Grid container justify="center" className={cardListContainer}>
       {projectDetails.map(({ name, image, text, icons, source, demo }, key) => (
@@ -188,7 +184,7 @@ const PortfolioCardList = () => {
               Source code on Github
             </Button>
 
-            {name !== "This Page (Personal Portfolio)" && (
+            {image !== avatarImage && (
               <Button
                 href={demo}
                 target="_blank"

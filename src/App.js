@@ -8,6 +8,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import './App.css';
 
+import Navbar from "./components/Navbar"
+
 import Homepage from './pages/Homepage';
 import Resume from "./pages/Resume";
 import Portfolio from "./pages/Portfolio";
@@ -19,10 +21,20 @@ import ParticlesBackground from './components/ParticlesBackground';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#AF0001",
+      // brick red:
+      // main: "#AF0001",
+      // experiment:
+      main: "#0f52ba",
+
+      mainGradient: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)",
+
     },
     secondary: {
-      main: "#ffba94",
+
+      // main: "#ffba94",
+      // experiment:
+      main: "#ffdb97",
+
       light: "#fffad1"
     },
   },
@@ -39,6 +51,7 @@ const theme = createMuiTheme({
 
     ].join(','),
   },
+
 });
 
 
@@ -49,6 +62,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <ParticlesBackground />
         <CssBaseline />
+        <Navbar />
         <Homepage />
         <Resume />
         <Portfolio />

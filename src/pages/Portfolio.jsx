@@ -8,7 +8,8 @@ import PortfolioCardList from "../components/PortfolioCardList";
 
 import background from "../images/background.jpg";
 import PageDivider from "../components/PageDivider";
-import Zoom from "react-reveal/Zoom";
+
+import { Bounce } from "react-reveal";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -47,14 +48,16 @@ const Portfolio = () => {
     <>
       <Box component="div" className={classes.pageContainer} id="portfolio">
         <PageDivider />
-        <Zoom>
-          <Box component="div" className={classes.pageItem}>
+        <Box component="div" className={classes.pageItem}>
+          <Bounce left>
             <Box component="div" className={classes.heading}>
               <Typography variant="h3">MY PROJECTS</Typography>
             </Box>
+          </Bounce>
+          <Bounce right delay={200}>
             <PortfolioCardList />
-          </Box>
-        </Zoom>
+          </Bounce>
+        </Box>
       </Box>
     </>
   );

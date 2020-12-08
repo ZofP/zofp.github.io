@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Divider } from "@material-ui/core/";
 
+import { RubberBand } from "react-reveal";
+
 const useStyles = makeStyles((theme) => ({
   divider: {
     backgroundColor: theme.palette.primary.main,
