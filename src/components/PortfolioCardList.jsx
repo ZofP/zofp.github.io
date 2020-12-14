@@ -27,6 +27,23 @@ import avatarImage from "../images/avatar.png";
 
 const projectDetails = [
   {
+    name: "Personal Portfolio \n (This Page)",
+    image: avatarImage,
+    text: "My personal portfolio web page. Made from scratch.",
+    icons: [{ title: "React", component: <REACTicon /> }],
+    source: "/",
+    demo: "/",
+  },
+  {
+    name: "Search Pixabay Pictures Project",
+    image: pixabay,
+    text:
+      "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
+    icons: [{ title: "React", component: <REACTicon /> }],
+    source: "https://github.com/ZofP/search-pixabay-pictures",
+    demo: "https://zofp.github.io/search-pixabay-pictures/",
+  },
+  {
     name: "Backroads Project",
     image: backroads,
     text:
@@ -51,23 +68,6 @@ const projectDetails = [
     ],
     source: "https://github.com/ZofP/coffee-bar-JS-project",
     demo: "https://zofp.github.io/coffee-bar-JS-project/",
-  },
-  {
-    name: "Search Pixabay Pictures Project",
-    image: pixabay,
-    text:
-      "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
-    icons: [{ title: "React", component: <REACTicon /> }],
-    source: "https://github.com/ZofP/search-pixabay-pictures",
-    demo: "https://zofp.github.io/search-pixabay-pictures/",
-  },
-  {
-    name: "Personal Portfolio \n (This Page)",
-    image: avatarImage,
-    text: "My personal portfolio web page. Made from scratch.",
-    icons: [{ title: "React", component: <REACTicon /> }],
-    source: "/",
-    demo: "/",
   },
 ];
 

@@ -15,7 +15,6 @@ import InputField from "../components/InputField";
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    // flex: "1 0 0",
     display: "flex",
     alignItems: "center",
     margin: "0 3rem",
@@ -178,6 +177,11 @@ const ContactForm = () => {
             alert("Your message has been sent");
           }}
           disabled={!methods.formState.isValid}
+          // style={{
+          //   background: methods.formState.isValid
+          //     ? theme.palette.primary.success
+          //     : theme.palette.primary.error,
+          // }}
         >
           SEND
         </Button>

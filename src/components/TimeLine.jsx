@@ -9,20 +9,26 @@ import "react-vertical-timeline-component/style.min.css";
 import {
   Work as WorkIcon,
   School as SchoolIcon,
-  Warning as ProblemIcon,
-  Build as SolutionIcon,
+  // Warning as ProblemIcon,
+  SentimentVeryDissatisfied as ProblemIcon,
+  // Build as SolutionIcon,
+  SentimentSatisfiedAlt as SolutionIcon,
+  // LocalAirportRounded as PresentIcon,
 } from "@material-ui/icons";
 
-import { Divider } from "@material-ui/core";
+import { Icon } from "@iconify/react";
+import PresentIcon from "@iconify-icons/ri/lightbulb-flash-line";
 
 import { makeStyles } from "@material-ui/core/styles";
+
 import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   timeline: {
-    marginRight: "1rem !important",
+    marginBottom: "2rem !important",
     display: "flex",
     flexDirection: "column",
+    padding: "0",
     "&.vertical-timeline::before": {
       background: theme.palette.primary.main,
     },
@@ -33,18 +39,28 @@ const useStyles = makeStyles((theme) => ({
   },
 
   dates: {
-    color: "#000",
+    // color: "#000",
+    [theme.breakpoints.up("laptop")]: {
+      color: "#000",
+    },
+
     fontWeight: "700 !important",
     fontSize: "1.3rem !important",
   },
   timelineElement: {
-    // marginBlock: "auto !important",
-    marginBlock: "1rem !important",
+    marginBlockEnd: "1rem !important",
+  },
+  lastTimelineElement: {
+    marginBlockEnd: "1rem !important",
+    margin: "3rem 0 2rem 0",
+    [theme.breakpoints.up("laptop")]: {
+      margin: "8rem 0 2rem 0",
+    },
   },
   problemContainer: {
     display: "inline-flex",
     alignItems: "center",
-    color: "#ed8e8e",
+    color: theme.palette.primary.error,
   },
   problem: {
     margin: "0 0 0 1em !important",
@@ -52,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   solutionContainer: {
     display: "inline-flex",
     alignItems: "center",
-    color: "#b4ff99",
+    color: theme.palette.primary.success,
   },
   solution: {
     margin: "1em 0 0 1em !important",
@@ -69,98 +85,14 @@ const TimeLine = () => {
   const theme = useTheme();
   const timeLineItems = [
     {
-      type: "work",
-      from_to: "2019 - present",
-      company: "DXC TECHNOLOGY",
-      position1: "Process Improvement Specialist",
-      position2: "General Ledger Accountant",
-      description: "",
-      problem1:
-        "asked to provide a solution for processing access requests to internal database (done by sending emails manually)",
-      solution1:
-        "set up a process flow in MS Power Automate which sends automatic emails to requester, approvers and technical support",
-      problem2:
-        "frustration: employee absences requests being submitted by email, their overview stored in manually updated Excel tables",
-      solution2: `created an application in MS PowerApps (code similar to JavaScript) to easily manage the absence requests, data are stored on cloud.\nThe app is now used accross the whole company.`,
-      contentStyle: {
-        // background: theme.palette.primary.light,
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.light,
-        // color: theme.palette.secondary.main,
-      },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.dark}`,
-      },
-      iconStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.main,
-      },
-      icon: <WorkIcon />,
-    },
-    {
-      type: "work",
-      from_to: "2018",
-      company: "DXC TECHNOLOGY",
-      position1: "Labor Accounting Deputy Team leader",
-      position2: "",
-      description: "",
-      problem1:
-        "frustration: time-consuming reporting processes, a lot of data copy-pasting",
-      solution1:
-        "created multiple Excel macros (code written in VBA) to do majority of the reporting work with one button click",
-      problem2: "",
-      solution2: "",
-      contentStyle: {
-        background: theme.palette.primary.main,
-        color: theme.palette.secondary.light,
-      },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.main}`,
-      },
-      iconStyle: {
-        background: theme.palette.primary.main,
-        color: theme.palette.secondary.main,
-      },
-      icon: <WorkIcon />,
-    },
-    {
-      type: "work",
-      from_to: "2017",
-      company: "CSC COMPUTER SCIENCES",
-      position1: "Labor Accounting Associate Professional",
-      position2: "",
-      description: "",
-      problem1:
-        "frustration: processes included sending very similar emails to various recipients one by one, only changing few words",
-      solution1:
-        "created an Excel macro (code written in VBA) which enabled mass sending of customized emails with one button click",
-      problem2: "",
-      solution2: "",
-      contentStyle: {
-        background: theme.palette.primary.main,
-        color: theme.palette.secondary.light,
-      },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.main}`,
-      },
-      iconStyle: {
-        background: theme.palette.primary.main,
-        color: theme.palette.secondary.main,
-      },
-      icon: <WorkIcon />,
-    },
-
-    {
       type: "school",
-      from_to: "2016",
+      year: "2016",
       company: "CHARLES UNIVERSITY IN PRAGUE",
       position1: "Bachelor degree in Economics and Finance",
       description:
         "acquired advanced math skills and strong analytical thinking",
-      problem1: "",
-      solution1: "",
-      problem2: "",
-      solution2: "",
+      problem: "",
+      solution: "",
       contentStyle: {
         background: theme.palette.secondary.main,
         // color: theme.palette.primary.dark,
@@ -175,15 +107,111 @@ const TimeLine = () => {
       },
       icon: <SchoolIcon />,
     },
+    {
+      type: "work",
+      year: "2017",
+      company: "CSC COMPUTER SCIENCES",
+      position1: "Labor Accounting Associate Professional",
+      position2: "",
+      description: "",
+      problem:
+        "processes included sending very similar emails to various recipients one by one, only changing few words",
+      solution:
+        "created an Excel macro (code written in VBA) which enabled mass sending of customized emails with one button click",
+      contentStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.light,
+      },
+      contentArrowStyle: {
+        borderRight: `7px solid  ${theme.palette.primary.main}`,
+      },
+      iconStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+      },
+      icon: <WorkIcon />,
+    },
+
+    {
+      type: "work",
+      year: "2018",
+      company: "DXC TECHNOLOGY",
+      position1: "Labor Accounting Deputy Team leader",
+      position2: "",
+      description: "",
+      problem: "time-consuming reporting processes, a lot of data copy-pasting",
+      solution:
+        "created multiple Excel macros (code written in VBA) to do majority of the reporting work with one button click",
+      contentStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.light,
+      },
+      contentArrowStyle: {
+        borderRight: `7px solid  ${theme.palette.primary.main}`,
+      },
+      iconStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+      },
+      icon: <WorkIcon />,
+    },
+    {
+      type: "work",
+      year: "2019",
+      company: "DXC TECHNOLOGY",
+      position1: "Process Improvement Specialist",
+      position2: "General Ledger Accountant",
+      description: "",
+      problem:
+        "asked to provide a solution for processing access requests to internal database (done by sending emails manually)",
+      solution:
+        "set up a process flow in MS Power Automate which sends automatic emails to requester, approvers and technical support",
+      contentStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.light,
+      },
+      contentArrowStyle: {
+        borderRight: `7px solid  ${theme.palette.primary.dark}`,
+      },
+      iconStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+      },
+      icon: <WorkIcon />,
+    },
+    {
+      type: "work",
+      year: "2020",
+      company: "DXC TECHNOLOGY",
+      position1: "Process Improvement Specialist",
+      position2: "General Ledger Accountant",
+      description: "",
+      problem:
+        "employee absences requests being submitted by email, their overview stored in manually updated Excel tables",
+      solution:
+        "created an application in MS PowerApps (code similar to JavaScript) to easily manage the absence requests, data are stored on cloud.\nThe app is now used accross the whole company.",
+      contentStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.light,
+      },
+      contentArrowStyle: {
+        borderRight: `7px solid  ${theme.palette.primary.dark}`,
+      },
+      iconStyle: {
+        background: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+      },
+      icon: <WorkIcon />,
+    },
   ];
   return (
     <VerticalTimeline className={classes.timeline}>
       {timeLineItems.map((item, key) => (
         <VerticalTimelineElement
-          className={`vertical-timeline-element--work ${classes.timelineElement}`}
+          className={classes.timelineElement}
           contentStyle={item.contentStyle}
           contentArrowStyle={item.contentArrowStyle}
-          date={item.from_to}
+          date={item.year}
           dateClassName={classes.dates}
           iconStyle={item.iconStyle}
           icon={item.icon}
@@ -209,14 +237,14 @@ const TimeLine = () => {
           <p>{item.description}</p>
           <div className={classes.problemContainer}>
             {item.type === "work" && <ProblemIcon />}
-            <p className={classes.problem}>{item.problem1}</p>
+            <p className={classes.problem}>{item.problem}</p>
           </div>
           <div className={classes.solutionContainer}>
             {item.type === "work" && <SolutionIcon />}
-            <p className={classes.solution}>{item.solution1}</p>
+            <p className={classes.solution}>{item.solution}</p>
           </div>
 
-          {item.problem2 && (
+          {/* {item.problem2 && (
             <>
               <Divider className={classes.divider} />
               <div className={classes.problemContainer}>
@@ -228,9 +256,21 @@ const TimeLine = () => {
                 <p className={classes.solution}>{item.solution2}</p>
               </div>
             </>
-          )}
+          )} */}
         </VerticalTimelineElement>
       ))}
+      <VerticalTimelineElement
+        // className={classes.timelineElement}
+        icon={<Icon icon={PresentIcon} />}
+        iconStyle={{
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        }}
+        contentStyle={{ padding: "0" }}
+        // style={{ margin: "3rem 0 1rem 0" }}
+        className={classes.lastTimelineElement}
+        // style={{ margin: "8rem 0 2rem 0" }}
+      />
     </VerticalTimeline>
   );
 };

@@ -5,8 +5,6 @@ import { Bounce } from "react-reveal";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import PageDivider from "../components/PageDivider";
-
 import ContactForm from "../components/ContactForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +49,6 @@ const Contacts = () => {
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="contacts">
-        <PageDivider />
         <Box component="div" className={classes.pageItem}>
           <Bounce left>
             <Box component="div" className={classes.heading}>

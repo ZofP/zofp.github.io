@@ -4,7 +4,7 @@ import { Typography, Avatar, Grid, Box } from "@material-ui/core";
 import Typed from "react-typed";
 import avatarImage from "../images/avatar.png";
 
-import { Slide, Bounce } from "react-reveal";
+import { Bounce } from "react-reveal";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
   },
   title: {
-    color: "#3a4c5a",
+    // color: "#3a4c5a",
+    color: theme.palette.primary.dark,
     textAlign: "center",
     fontWeight: "300",
     margin: "1rem 1rem",

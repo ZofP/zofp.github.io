@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify/react": "^1.1.3",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.10.0",
@@ -19,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.1.0",
     "react-scripts": "3.4.3",
+    "react-scrollspy": "^3.4.3",
     "react-typed": "^1.2.0",
     "react-vertical-timeline-component": "^3.0.2",
     "react-visibility-sensor": "^5.1.1",
@@ -44,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify-icons/ri": "^1.1.0"
   }
 }

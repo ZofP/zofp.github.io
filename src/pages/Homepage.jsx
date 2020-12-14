@@ -4,12 +4,9 @@ import { Box } from "@material-ui/core/";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Slide } from "react-reveal";
-
-import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
 
-import background from "../images/background.jpg";
+import PageDivider from "../components/PageDivider";
 
 const useStyles = makeStyles({
   pageContainer: {
@@ -17,7 +14,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-
     background: `rgba(255, 255, 255, 1)`,
   },
   pageItem: {
@@ -47,6 +43,7 @@ const Homepage = () => {
         <Box component="div" className={classes.pageItem}>
           <Profile className={classes.pageSubitem} variant="technologies" />
         </Box>
+        <PageDivider />
       </Box>
     </>
   );

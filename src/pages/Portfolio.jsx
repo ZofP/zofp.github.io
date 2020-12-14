@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import PortfolioCardList from "../components/PortfolioCardList";
 
-import background from "../images/background.jpg";
 import PageDivider from "../components/PageDivider";
 
 import { Bounce } from "react-reveal";
@@ -17,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "100vh",
     height: "100%",
-
     background: `rgba(255, 255, 255, 1)`,
   },
   pageItem: {
@@ -47,7 +45,6 @@ const Portfolio = () => {
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="portfolio">
-        <PageDivider />
         <Box component="div" className={classes.pageItem}>
           <Bounce left>
             <Box component="div" className={classes.heading}>
@@ -58,6 +55,7 @@ const Portfolio = () => {
             <PortfolioCardList />
           </Bounce>
         </Box>
+        <PageDivider />
       </Box>
     </>
   );

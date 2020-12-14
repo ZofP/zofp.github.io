@@ -2,13 +2,12 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Box, Grid } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 
-import background from "../images/background.jpg";
-
-import Profile from "../components/Profile";
 import TimeLine from "../components/TimeLine";
 import PageDivider from "../components/PageDivider";
+
+import { Bounce, Zoom } from "react-reveal";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -16,38 +15,45 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "92vh",
     height: "100%",
-    // background: `linear-gradient(rgba(255, 255, 255, 0.65),rgba(255, 255, 255, 0.65)), url(${background}) no-repeat
-    //  center center / 100% 100%
-    //  fixed`,
     background: `rgba(255, 255, 255, 1)`,
   },
   pageContent: {
     flex: "1",
     display: "flex",
     justifyContent: "space-around",
-    // flexDirection: "column",
     alignSelf: "center",
-    // textAlign: "center",
     alignItems: "stretch",
     width: "100%",
     height: "100%",
     position: "relative",
   },
-  gridContainer: {
-    height: "100% !important",
-  },
-
-  profileContainer: {
-    // display: "flex",
-    // flexDirection: "column",
-    // flex: "1",
+  heading: {
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
-    // textAlign: "center",
+    color: theme.palette.primary.dark,
+    margin: "2rem 0 2.5rem 0",
+    textAlign: "center",
+  },
+  text: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    color: theme.palette.primary.dark,
+    textAlign: "center",
+    margin: "2rem 0 2.5rem 0",
+  },
+  pageItem: {
+    flex: "1 0 0",
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "column",
     alignSelf: "center",
-    // marginTop: "10rem",
-    // position: "fixed",
-    padding: "0 1rem",
+    // textAlign: "center",
+    alignItems: "center",
+    width: "100%",
+    position: "relative",
+    // marginBottom: "1rem",
   },
 }));
 
@@ -56,12 +62,40 @@ const Resume = () => {
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="resume">
-        <PageDivider />
-        <Grid container justify="center" className={classes.pageContent}>
-          <Grid item container xs={10} md={9}>
-            <TimeLine />
+        <Box component="div" className={classes.pageItem}>
+          <Bounce left>
+            <Box component="div" className={classes.heading}>
+              <Typography variant="h3">MY STORY</Typography>
+            </Box>
+          </Bounce>
+          <Grid container justify="center" className={classes.pageContent}>
+            {/* <Grid item container justify="center" xs={10} md={9}> */}
+
+            {/* </Grid> */}
+            <Grid item container xs={10} md={9}>
+              <TimeLine />
+            </Grid>
           </Grid>
-        </Grid>
+          <Box component="div" className={classes.text}>
+            <Zoom>
+              <Box>
+                <Typography variant="h4">AND THEN I THOUGHT ...</Typography>
+              </Box>
+            </Zoom>
+            <Zoom delay={500}>
+              <Box style={{ marginTop: "1rem" }}>
+                <Typography variant="h4">
+                  WHAT ABOUT LEARNING{" "}
+                  <b>
+                    <i>ACTUAL</i>
+                  </b>{" "}
+                  PROGRAMMING ?
+                </Typography>
+              </Box>
+            </Zoom>
+          </Box>
+        </Box>
+        <PageDivider />
       </Box>
     </>
   );

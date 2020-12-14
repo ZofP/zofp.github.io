@@ -15,6 +15,7 @@ import Resume from "./pages/Resume";
 import Portfolio from "./pages/Portfolio";
 import Contacts from "./pages/Contacts";
 import ParticlesBackground from './components/ParticlesBackground';
+import Footer from './components/Footer';
 
 
 
@@ -25,18 +26,16 @@ const theme = createMuiTheme({
       // main: "#AF0001",
       // experiment:
       main: "#0f52ba",
-
-      mainGradient: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)",
-
+      success: "#b4ff99",
+      error: "#ed8e8e"
     },
     secondary: {
-
       // main: "#ffba94",
       // experiment:
       main: "#ffdb97",
-
       light: "#fffad1"
     },
+
   },
   typography: {
     fontFamily: [
@@ -51,6 +50,16 @@ const theme = createMuiTheme({
 
     ].join(','),
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+      laptop: 1170
+    }
+  }
 
 });
 
@@ -67,6 +76,7 @@ function App() {
         <Resume />
         <Portfolio />
         <Contacts />
+        <Footer />
       </ThemeProvider>
     </>
   )
