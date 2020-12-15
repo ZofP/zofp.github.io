@@ -71,14 +71,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     textAlign: "end",
   },
-  // headers: {
-  //   flexGrow: 1,
-  //   color: theme.palette.secondary.light,
-  //   userSelect: "none",
-  //   textTransform: "uppercase",
-  //   fontWeight: "500",
-  //   textAlign: "end",
-  // },
+
   headersContainer: {
     display: "flex",
     flexDirection: "row",
@@ -102,10 +95,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   listItemCurrent: {
-    // background: "green",
-    // color:
-    "& div": {
+    "& div span": {
       color: theme.palette.secondary.main,
+      fontWeight: "600",
     },
   },
 }));

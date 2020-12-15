@@ -9,11 +9,8 @@ import "react-vertical-timeline-component/style.min.css";
 import {
   Work as WorkIcon,
   School as SchoolIcon,
-  // Warning as ProblemIcon,
   SentimentVeryDissatisfied as ProblemIcon,
-  // Build as SolutionIcon,
   SentimentSatisfiedAlt as SolutionIcon,
-  // LocalAirportRounded as PresentIcon,
 } from "@material-ui/icons";
 
 import { Icon } from "@iconify/react";
@@ -39,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   dates: {
-    // color: "#000",
     [theme.breakpoints.up("laptop")]: {
       color: "#000",
     },
@@ -95,7 +91,6 @@ const TimeLine = () => {
       solution: "",
       contentStyle: {
         background: theme.palette.secondary.main,
-        // color: theme.palette.primary.dark,
         color: theme.palette.primary.main,
       },
       contentArrowStyle: {
@@ -243,33 +238,16 @@ const TimeLine = () => {
             {item.type === "work" && <SolutionIcon />}
             <p className={classes.solution}>{item.solution}</p>
           </div>
-
-          {/* {item.problem2 && (
-            <>
-              <Divider className={classes.divider} />
-              <div className={classes.problemContainer}>
-                <ProblemIcon />
-                <p className={classes.problem}>{item.problem2}</p>
-              </div>
-              <div className={classes.solutionContainer}>
-                <SolutionIcon />
-                <p className={classes.solution}>{item.solution2}</p>
-              </div>
-            </>
-          )} */}
         </VerticalTimelineElement>
       ))}
       <VerticalTimelineElement
-        // className={classes.timelineElement}
         icon={<Icon icon={PresentIcon} />}
         iconStyle={{
           background: theme.palette.primary.dark,
           color: theme.palette.secondary.main,
         }}
         contentStyle={{ padding: "0" }}
-        // style={{ margin: "3rem 0 1rem 0" }}
         className={classes.lastTimelineElement}
-        // style={{ margin: "8rem 0 2rem 0" }}
       />
     </VerticalTimeline>
   );

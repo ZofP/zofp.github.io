@@ -49,11 +49,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     flexDirection: "column",
     alignSelf: "center",
-    // textAlign: "center",
     alignItems: "center",
     width: "100%",
     position: "relative",
-    // marginBottom: "1rem",
   },
 }));
 
@@ -69,9 +67,6 @@ const Resume = () => {
             </Box>
           </Bounce>
           <Grid container justify="center" className={classes.pageContent}>
-            {/* <Grid item container justify="center" xs={10} md={9}> */}
-
-            {/* </Grid> */}
             <Grid item container xs={10} md={9}>
               <TimeLine />
             </Grid>
