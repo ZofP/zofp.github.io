@@ -88,16 +88,31 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(13),
     pointerEvents: "none",
   },
-  listItem: {
+  menuDrawerItem: {
     color: theme.palette.secondary.light,
     "&:hover div": {
       color: theme.palette.secondary.main,
+      transform: "translateY(-10%)",
+    },
+    "& div": {
+      transition: "all 0.15s ease-out",
     },
   },
-  listItemCurrent: {
+  menuItem: {
+    color: theme.palette.secondary.light,
+    "&:hover span": {
+      color: theme.palette.secondary.main,
+      transform: "translateY(-8%)",
+      // fontWeight: "600",
+    },
+    "& span": {
+      transition: "all 0.15s ease-out",
+    },
+  },
+
+  menuItemCurrent: {
     "& div span": {
       color: theme.palette.secondary.main,
-      fontWeight: "600",
     },
   },
 }));
@@ -162,9 +177,9 @@ const Navbar = () => {
             to={item.itemPath}
             scroll={(el) => scrollWithOffset(el)}
             onClick={toggleDrawer(false)}
-            className={classes.listItem}
+            className={classes.menuDrawerItem}
           >
-            <ListItemIcon className={classes.listItem}>
+            <ListItemIcon className={classes.menuItem}>
               {item.itemIcon}
             </ListItemIcon>
             <ListItemText primary={item.itemText} />
@@ -182,12 +197,9 @@ const Navbar = () => {
             <>
               <Scrollspy
                 componentTag={List}
-                items={
-                  // [menuItems.map((item) => item.itemText.toLowerCase)]
-                  ["home", "resume", "portfolio", "contacts"]
-                }
+                items={["home", "resume", "portfolio", "contacts"]}
                 offset={-48}
-                currentClassName={classes.listItemCurrent}
+                currentClassName={classes.menuItemCurrent}
                 className={classes.headersContainer}
               >
                 {menuItems.map((item, key) => (
@@ -201,7 +213,7 @@ const Navbar = () => {
                   >
                     <ListItemText
                       primary={item.itemText}
-                      className={classes.listItem}
+                      className={classes.menuItem}
                     />
                   </ListItem>
                 ))}

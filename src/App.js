@@ -10,11 +10,13 @@ import './App.css';
 
 import Navbar from "./components/Navbar"
 
-import Homepage from './pages/Homepage';
+import Homepage from "./pages/Homepage";
 import Resume from "./pages/Resume";
 import Portfolio from "./pages/Portfolio";
 import Contacts from "./pages/Contacts";
+
 import ParticlesBackground from './components/ParticlesBackground';
+
 import Footer from './components/Footer';
 
 
