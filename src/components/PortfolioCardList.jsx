@@ -25,52 +25,6 @@ import coffeebar from "../images/coffeebar.jpeg";
 import pixabay from "../images/pixabay.jpg";
 import avatarImage from "../images/avatar.png";
 
-const projectDetails = [
-  {
-    name: "Personal Portfolio \n (This Page)",
-    image: avatarImage,
-    text: "My personal portfolio web page. Made from scratch.",
-    icons: [{ title: "React", component: <REACTicon /> }],
-    source: "/",
-    demo: "/",
-  },
-  {
-    name: "Search Pixabay Pictures Project",
-    image: pixabay,
-    text:
-      "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
-    icons: [{ title: "React", component: <REACTicon /> }],
-    source: "https://github.com/ZofP/search-pixabay-pictures",
-    demo: "https://zofp.github.io/search-pixabay-pictures/",
-  },
-  {
-    name: "Backroads Project",
-    image: backroads,
-    text:
-      "Web page of a fictional travel agency. Made as a part of an online course.",
-    icons: [
-      { title: "HTML", component: <HTMLicon /> },
-      { title: "CSS", component: <CSSicon /> },
-      { title: "JavaScript", component: <JSicon /> },
-    ],
-    source: "https://github.com/ZofP/backroads-JS-project",
-    demo: "https://zofp.github.io/backroads-JS-project/index.html",
-  },
-  {
-    name: "Coffee Bar Project",
-    image: coffeebar,
-    text:
-      "Web page of a fictional coffee bar. Main focus on CSS, with a couple of JS effects. Made as a part of an online course.",
-    icons: [
-      { title: "HTML", component: <HTMLicon /> },
-      { title: "CSS", component: <CSSicon /> },
-      { title: "JavaScript", component: <JSicon /> },
-    ],
-    source: "https://github.com/ZofP/coffee-bar-JS-project",
-    demo: "https://zofp.github.io/coffee-bar-JS-project/",
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   cardListContainer: {
     maxWidth: "100vw",
@@ -122,18 +76,108 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PortfolioCardList = () => {
-  const {
-    cardContainer,
-    cardListContainer,
-    cardContent,
-    cardActions,
-    cardImg,
-    cardIconsContainer,
-  } = useStyles();
+const PortfolioCardList = (props) => {
+  const classes = useStyles();
+
+  let projectDetails = {
+    english: [
+      {
+        name: "Personal Portfolio \n (This Page)",
+        image: avatarImage,
+        text: "My personal portfolio web page. Made from scratch.",
+        icons: [{ title: "React", component: <REACTicon /> }],
+        source: "/",
+        demo: "/",
+      },
+      {
+        name: "Search Pixabay Pictures Project",
+        image: pixabay,
+        text:
+          "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
+        icons: [{ title: "React", component: <REACTicon /> }],
+        source: "https://github.com/ZofP/search-pixabay-pictures",
+        demo: "https://zofp.github.io/search-pixabay-pictures/",
+      },
+      {
+        name: "Backroads Project",
+        image: backroads,
+        text:
+          "Web page of a fictional Backroads travel agency. Made as a part of an online course.",
+        icons: [
+          { title: "HTML", component: <HTMLicon /> },
+          { title: "CSS", component: <CSSicon /> },
+          { title: "JavaScript", component: <JSicon /> },
+        ],
+        source: "https://github.com/ZofP/backroads-JS-project",
+        demo: "https://zofp.github.io/backroads-JS-project/index.html",
+      },
+      {
+        name: "Coffee Bar Project",
+        image: coffeebar,
+        text:
+          "Web page of a fictional coffee bar. Main focus on CSS, with a couple of JavaScript effects. Made as a part of an online course.",
+        icons: [
+          { title: "HTML", component: <HTMLicon /> },
+          { title: "CSS", component: <CSSicon /> },
+          { title: "JavaScript", component: <JSicon /> },
+        ],
+        source: "https://github.com/ZofP/coffee-bar-JS-project",
+        demo: "https://zofp.github.io/coffee-bar-JS-project/",
+      },
+    ],
+    czech: [
+      {
+        name: "Osobní portfolio \n (tato stránka)",
+        image: avatarImage,
+        text: "Moje osobní webová stránka portfolia. Vytvořeno od nuly.",
+        icons: [{ title: "React", component: <REACTicon /> }],
+        source: "/",
+        demo: "/",
+      },
+      {
+        name: "Vyhledavač Pixabay obrázků",
+        image: pixabay,
+        text:
+          "Webová stránka umožňující vyhledat obrázky z veřejného Pixabay API. Vytvořeno od nuly.",
+        icons: [{ title: "React", component: <REACTicon /> }],
+        source: "https://github.com/ZofP/search-pixabay-pictures",
+        demo: "https://zofp.github.io/search-pixabay-pictures/",
+      },
+      {
+        name: "Backroads Projekt",
+        image: backroads,
+        text:
+          "Webová stránka fiktivní cestovní agentury Backroads. Vytvořeno jako součást online kurzu.",
+        icons: [
+          { title: "HTML", component: <HTMLicon /> },
+          { title: "CSS", component: <CSSicon /> },
+          { title: "JavaScript", component: <JSicon /> },
+        ],
+        source: "https://github.com/ZofP/backroads-JS-project",
+        demo: "https://zofp.github.io/backroads-JS-project/index.html",
+      },
+      {
+        name: "Coffee Bar Projekt",
+        image: coffeebar,
+        text:
+          "Webová stránka fiktivní kavárny. Zaměřeno předevšim na CSS a pár efektů v JavaScriptu. Vytvořeno jako součást online kurzu.",
+        icons: [
+          { title: "HTML", component: <HTMLicon /> },
+          { title: "CSS", component: <CSSicon /> },
+          { title: "JavaScript", component: <JSicon /> },
+        ],
+        source: "https://github.com/ZofP/coffee-bar-JS-project",
+        demo: "https://zofp.github.io/coffee-bar-JS-project/",
+      },
+    ],
+  };
+
+  props.language === "czech"
+    ? (projectDetails = projectDetails.czech)
+    : (projectDetails = projectDetails.english);
 
   return (
-    <Grid container justify="center" className={cardListContainer}>
+    <Grid container justify="center" className={classes.cardListContainer}>
       {projectDetails.map(({ name, image, text, icons, source, demo }, key) => (
         <Grid
           item
@@ -141,7 +185,7 @@ const PortfolioCardList = () => {
           sm={8}
           md={2}
           key={key}
-          className={cardContainer}
+          className={classes.cardContainer}
           component={Card}
         >
           <CardMedia
@@ -150,13 +194,13 @@ const PortfolioCardList = () => {
             height="220"
             image={image}
             src={image}
-            className={cardImg}
+            className={classes.cardImg}
           />
-          <CardContent className={cardContent}>
+          <CardContent className={classes.cardContent}>
             <Typography gutterBottom variant="h5">
               {name}
             </Typography>
-            <Box component="div" className={cardIconsContainer}>
+            <Box component="div" className={classes.cardIconsContainer}>
               {icons.map((icon, key) => (
                 <Tooltip
                   title={icon.title}
@@ -173,7 +217,7 @@ const PortfolioCardList = () => {
               {text}
             </Typography>
           </CardContent>
-          <CardActions className={cardActions}>
+          <CardActions className={classes.cardActions}>
             <Button
               href={source}
               target="_blank"
@@ -181,7 +225,9 @@ const PortfolioCardList = () => {
               size="small"
               color="secondary"
             >
-              Source code on Github
+              {props.language === "czech"
+                ? "Zdrojový kód na Github"
+                : "Source code on Github"}
             </Button>
 
             {image !== avatarImage && (
@@ -192,7 +238,7 @@ const PortfolioCardList = () => {
                 size="small"
                 color="primary"
               >
-                Live demo
+                {props.language === "czech" ? "Ukázka" : "Live demo"}
               </Button>
             )}
           </CardActions>

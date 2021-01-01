@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   CssBaseline,
 } from '@material-ui/core/'
@@ -11,8 +11,8 @@ import './App.css';
 import Navbar from "./components/Navbar"
 
 import Homepage from "./pages/Homepage";
-import Resume from "./pages/Resume";
-import Portfolio from "./pages/Portfolio";
+import Story from "./pages/Story";
+import Projects from "./pages/Projects";
 import Contacts from "./pages/Contacts";
 
 import ParticlesBackground from './components/ParticlesBackground';
@@ -20,20 +20,14 @@ import ParticlesBackground from './components/ParticlesBackground';
 import Footer from './components/Footer';
 
 
-
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // brick red:
-      // main: "#AF0001",
-      // experiment:
       main: "#0f52ba",
       success: "#b4ff99",
       error: "#ed8e8e"
     },
     secondary: {
-      // main: "#ffba94",
-      // experiment:
       main: "#ffdb97",
       light: "#fffad1"
     },
@@ -41,15 +35,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: [
-      // 'Kanit',
-      // "'Merriweather Sans'",
-      // 'Poppins',
-      // "'Red Hat Display'",
       'Saira',
-      // 'Sarala',
-      // 'Ubuntu',
-      // 'Varela',
-
     ].join(','),
   },
   breakpoints: {
@@ -68,16 +54,31 @@ const theme = createMuiTheme({
 
 
 function App() {
+  let languageStoredInLocalStorage = localStorage.getItem("language");
+  let [language, setLanguage] = useState(
+    languageStoredInLocalStorage ? languageStoredInLocalStorage : "english"
+  );
+
+  const storeLanguageInLocalStorage = (language) => {
+    localStorage.setItem("language", language)
+  }
+
+  const handleSetLanguage = language => {
+    setLanguage(language);
+    storeLanguageInLocalStorage(language);
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <ParticlesBackground />
         <CssBaseline />
-        <Navbar />
-        <Homepage />
-        <Resume />
-        <Portfolio />
-        <Contacts />
+        <Navbar language={language}
+          handleSetLanguage={handleSetLanguage} />
+        <Homepage language={language} />
+        <Story language={language} />
+        <Projects language={language} />
+        <Contacts language={language} />
         <Footer />
       </ThemeProvider>
     </>

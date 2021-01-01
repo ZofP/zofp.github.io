@@ -34,14 +34,18 @@ const useStyles = makeStyles({
   },
 });
 
-const Homepage = () => {
+const Homepage = (props) => {
   const classes = useStyles();
 
   return (
     <>
       <Box component="div" className={classes.pageContainer} id="home">
         <Box component="div" className={classes.pageItem}>
-          <Profile className={classes.pageSubitem} variant="technologies" />
+          <Profile
+            className={classes.pageSubitem}
+            variant="technologies"
+            language={props.language}
+          />
         </Box>
         <PageDivider />
       </Box>

@@ -47,8 +47,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = () => {
+const Profile = (props) => {
   const classes = useStyles();
+
+  let strings = {
+    english: {
+      title: ["Petr Žofák"],
+      subtitle: ["aspiring web developer", "React | JavaScript"],
+    },
+    czech: {
+      title: ["Petr Žofák"],
+      subtitle: ["aspirující web developer", "React | JavaScript"],
+    },
+  };
+
+  props.language === "czech"
+    ? (strings = strings.czech)
+    : (strings = strings.english);
 
   return (
     <Box className={classes.typedContainer}>
@@ -58,12 +73,12 @@ const Profile = () => {
             <Avatar className={classes.avatar} src={avatarImage} alt="avatar" />
           </Grid>
           <Typography className={classes.title} variant="h3">
-            <Typed strings={["Petr Žofák"]} typeSpeed={40} startDelay={700} />
+            <Typed strings={strings.title} typeSpeed={40} startDelay={700} />
           </Typography>
 
           <Typography className={classes.subtitle} variant="h5">
             <Typed
-              strings={["aspiring web developer", "React | JavaScript"]}
+              strings={strings.subtitle}
               typeSpeed={60}
               backSpeed={60}
               startDelay={700}

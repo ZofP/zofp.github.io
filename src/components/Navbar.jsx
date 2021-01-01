@@ -33,6 +33,10 @@ import { Bounce } from "react-reveal";
 
 import avatar from "../images/avatar.png";
 
+import { Icon } from "@iconify/react";
+import EnglishFlag from "@iconify-icons/emojione/flag-for-united-kingdom";
+import CzechFlag from "@iconify-icons/emojione/flag-for-czechia";
+
 const useStyles = makeStyles((theme) => ({
   navbarContainer: {
     zIndex: "2",
@@ -75,11 +79,11 @@ const useStyles = makeStyles((theme) => ({
   headersContainer: {
     display: "flex",
     flexDirection: "row",
-  },
-  menuDrawerContainer: {
-    width: 250,
-    background: theme.palette.primary.dark,
     height: "100%",
+    padding: "0",
+    "& a": {
+      textAlign: "center",
+    },
   },
   avatar: {
     display: "block",
@@ -88,21 +92,41 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(13),
     pointerEvents: "none",
   },
+  menuDrawerContainer: {
+    width: 250,
+    background: theme.palette.primary.dark,
+    height: "100%",
+  },
   menuDrawerItem: {
     color: theme.palette.secondary.light,
     "&:hover div": {
       color: theme.palette.secondary.main,
-      transform: "translateY(-10%)",
+      transform: "translateY(-5%)",
     },
     "& div": {
       transition: "all 0.15s ease-out",
     },
   },
+  languageIconsDrawerContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginBottom: "0.5rem",
+  },
+
+  iconDrawerContainer: {
+    "&:hover": {
+      transform: "scale(1.3)",
+      cursor: "pointer",
+    },
+    transition: "all 0.15s ease-out",
+  },
+
   menuItem: {
     color: theme.palette.secondary.light,
     "&:hover span": {
       color: theme.palette.secondary.main,
-      transform: "translateY(-8%)",
+      transform: "translateY(-5%)",
       // fontWeight: "600",
     },
     "& span": {
@@ -115,39 +139,88 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.secondary.main,
     },
   },
+  languageIconsContainer: {
+    alignItems: "center",
+    margin: "0 1rem 0 1rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    height: "100%",
+    // transform: "scale(1.1)",
+    "& svg": { cursor: "pointer" },
+  },
+  iconContainer: {
+    "&:hover": {
+      transform: "scale(1.3)",
+    },
+    transition: "all 0.15s ease-out",
+  },
 }));
 
-const menuItems = [
-  {
-    itemIcon: <Home />,
-    itemText: "Home",
-    itemPath: "#home",
-  },
-  {
-    itemIcon: <AssignmentInd />,
-    itemText: "Resume",
-    itemPath: "#resume",
-  },
-  {
-    itemIcon: <Apps />,
-    itemText: "Portfolio",
-    itemPath: "#portfolio",
-  },
-  {
-    itemIcon: <ContactMail />,
-    itemText: "Contacts",
-    itemPath: "#contacts",
-  },
-];
-
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
 
   const [state, setState] = useState({
     open: false,
   });
 
-  const smallScreen = useMediaQuery((theme) => theme.breakpoints.up("sm"));
+  let menuItems = {
+    english: [
+      {
+        itemIcon: <Home />,
+        itemText: "Home",
+        itemPath: "#home",
+      },
+      {
+        itemIcon: <AssignmentInd />,
+        itemText: "Story",
+        itemPath: "#story",
+      },
+      {
+        itemIcon: <Apps />,
+        itemText: "Projects",
+        itemPath: "#projects",
+      },
+      {
+        itemIcon: <ContactMail />,
+        itemText: "Contacts",
+        itemPath: "#contacts",
+      },
+    ],
+    czech: [
+      {
+        itemIcon: <Home />,
+        itemText: "Domů",
+        itemPath: "#home",
+      },
+      {
+        itemIcon: <AssignmentInd />,
+        itemText: "Příběh",
+        itemPath: "#story",
+      },
+      {
+        itemIcon: <Apps />,
+        itemText: "Projekty",
+        itemPath: "#projects",
+      },
+      {
+        itemIcon: <ContactMail />,
+        itemText: "Kontakt",
+        itemPath: "#contacts",
+      },
+    ],
+  };
+
+  props.language === "czech"
+    ? (menuItems = menuItems.czech)
+    : (menuItems = menuItems.english);
+
+  const languages = [
+    { language: "czech", flag: CzechFlag },
+    { language: "english", flag: EnglishFlag },
+  ];
+
+  const notSmallScreen = useMediaQuery((theme) => theme.breakpoints.up("sm"));
 
   const toggleDrawer = (open) => () => {
     setState({ ...state, open: open });
@@ -166,6 +239,16 @@ const Navbar = () => {
     <Box className={classes.menuDrawerContainer} component="div">
       <Close className={classes.closeButton} onClick={toggleDrawer(false)} />
       <Avatar className={classes.avatar} src={avatar} alt="avatar" />
+      <Box className={classes.languageIconsDrawerContainer}>
+        {languages.map((item, key) => (
+          <Box className={classes.iconDrawerContainer} key={key}>
+            <Icon
+              onClick={() => props.handleSetLanguage(item.language)}
+              icon={item.flag}
+            />
+          </Box>
+        ))}
+      </Box>
       <Divider />
       <List>
         {menuItems.map((item, key) => (
@@ -193,11 +276,12 @@ const Navbar = () => {
     <Box component="div" className={classes.navbarContainer}>
       <Bounce left>
         <Toolbar className={classes.navbar} disableGutters>
-          {smallScreen ? (
+          {notSmallScreen ? (
             <>
               <Scrollspy
                 componentTag={List}
-                items={["home", "resume", "portfolio", "contacts"]}
+                // items={menuItems.map((item) => item.itemText.toLowerCase())}
+                items={menuItems.map((item) => item.itemPath.slice(1))}
                 offset={-48}
                 currentClassName={classes.menuItemCurrent}
                 className={classes.headersContainer}
@@ -218,6 +302,16 @@ const Navbar = () => {
                   </ListItem>
                 ))}
               </Scrollspy>
+              <Box className={classes.languageIconsContainer}>
+                {languages.map((item, key) => (
+                  <Box className={classes.iconContainer} key={key}>
+                    <Icon
+                      onClick={() => props.handleSetLanguage(item.language)}
+                      icon={item.flag}
+                    />
+                  </Box>
+                ))}
+              </Box>
             </>
           ) : (
             <>

@@ -43,8 +43,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Contacts = () => {
+const Contacts = (props) => {
   const classes = useStyles();
+
+  let content = {
+    english: {
+      heading: "CONTACT ME",
+    },
+    czech: {
+      heading: "KONTAKTUJTE MĚ",
+    },
+  };
+
+  props.language === "czech"
+    ? (content = content.czech)
+    : (content = content.english);
 
   return (
     <>
@@ -52,11 +65,11 @@ const Contacts = () => {
         <Box component="div" className={classes.pageItem}>
           <Bounce left>
             <Box component="div" className={classes.heading}>
-              <Typography variant="h3">CONTACT ME</Typography>
+              <Typography variant="h3">{content.heading}</Typography>
             </Box>
           </Bounce>
           <Bounce right delay={200}>
-            <ContactForm />
+            <ContactForm language={props.language} />
           </Bounce>
         </Box>
       </Box>

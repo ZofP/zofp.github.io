@@ -39,20 +39,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Portfolio = () => {
+const Projects = (props) => {
   const classes = useStyles();
+
+  let content = {
+    english: {
+      heading: "MY PROJECTS",
+    },
+    czech: {
+      heading: "MOJE PROJEKTY",
+    },
+  };
+
+  props.language === "czech"
+    ? (content = content.czech)
+    : (content = content.english);
 
   return (
     <>
-      <Box component="div" className={classes.pageContainer} id="portfolio">
+      <Box component="div" className={classes.pageContainer} id="projects">
         <Box component="div" className={classes.pageItem}>
           <Bounce left>
             <Box component="div" className={classes.heading}>
-              <Typography variant="h3">MY PROJECTS</Typography>
+              <Typography variant="h3">{content.heading}</Typography>
             </Box>
           </Bounce>
           <Bounce right delay={200}>
-            <PortfolioCardList />
+            <PortfolioCardList language={props.language} />
           </Bounce>
         </Box>
         <PageDivider />
@@ -61,4 +74,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Projects;

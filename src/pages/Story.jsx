@@ -43,6 +43,15 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "2rem 0 2.5rem 0",
   },
+  subtext: {
+    marginTop: "1rem",
+    [theme.breakpoints.up("sm")]: {
+      whiteSpace: "pre-wrap",
+    },
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
   pageItem: {
     flex: "1 0 0",
     display: "flex",
@@ -55,37 +64,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Resume = () => {
+const Story = (props) => {
   const classes = useStyles();
+
+  let content = {
+    english: {
+      heading: "MY STORY",
+      text: "AND THEN I THOUGHT ...",
+      subtext: ["WHAT ABOUT LEARNING", " ACTUAL ", "PROGRAMMING ?"],
+    },
+    czech: {
+      heading: "MŮJ PŘÍBĚH",
+      text: "A PAK MĚ NAPADLO ...",
+      subtext: ["CO TAKHLE NAUČIT SE", " SKUTEČNÉ ", "PROGRAMOVÁNÍ ?"],
+    },
+  };
+
+  props.language === "czech"
+    ? (content = content.czech)
+    : (content = content.english);
+
   return (
     <>
-      <Box component="div" className={classes.pageContainer} id="resume">
+      <Box component="div" className={classes.pageContainer} id="story">
         <Box component="div" className={classes.pageItem}>
           <Bounce left>
             <Box component="div" className={classes.heading}>
-              <Typography variant="h3">MY STORY</Typography>
+              <Typography variant="h3">{content.heading}</Typography>
             </Box>
           </Bounce>
           <Grid container justify="center" className={classes.pageContent}>
             <Grid item container xs={10} md={9}>
-              <TimeLine />
+              <TimeLine language={props.language} />
             </Grid>
           </Grid>
           <Box component="div" className={classes.text}>
             <Zoom>
               <Box>
-                <Typography variant="h4">AND THEN I THOUGHT ...</Typography>
+                <Typography variant="h4">{content.text}</Typography>
               </Box>
             </Zoom>
             <Zoom delay={500}>
-              <Box style={{ marginTop: "1rem" }}>
-                <Typography variant="h4">
-                  WHAT ABOUT LEARNING{" "}
-                  <b>
-                    <i>ACTUAL</i>
-                  </b>{" "}
-                  PROGRAMMING ?
+              <Box className={classes.subtext}>
+                <Typography variant="h4">{content.subtext[0]}</Typography>
+                <Typography
+                  style={{
+                    fontStyle: "italic",
+                    fontWeight: "bold",
+                  }}
+                  variant="h4"
+                >
+                  {content.subtext[1]}
                 </Typography>
+                <Typography variant="h4">{content.subtext[2]}</Typography>
               </Box>
             </Zoom>
           </Box>
@@ -96,4 +127,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default Story;

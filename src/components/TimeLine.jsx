@@ -76,129 +76,259 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TimeLine = () => {
+const TimeLine = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const timeLineItems = [
-    {
-      type: "school",
-      year: "2016",
-      company: "CHARLES UNIVERSITY IN PRAGUE",
-      position1: "Bachelor degree in Economics and Finance",
-      description:
-        "acquired advanced math skills and strong analytical thinking",
-      problem: "",
-      solution: "",
-      contentStyle: {
-        background: theme.palette.secondary.main,
-        color: theme.palette.primary.main,
-      },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.secondary.main}`,
-      },
-      iconStyle: {
-        background: theme.palette.secondary.main,
-        color: theme.palette.primary.dark,
-      },
-      icon: <SchoolIcon />,
-    },
-    {
-      type: "work",
-      year: "2017",
-      company: "CSC COMPUTER SCIENCES",
-      position1: "Labor Accounting Associate Professional",
-      position2: "",
-      description: "",
-      problem:
-        "processes included sending very similar emails to various recipients one by one, only changing few words",
-      solution:
-        "created an Excel macro (code written in VBA) which enabled mass sending of customized emails with one button click",
-      contentStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.light,
-      },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.main}`,
-      },
-      iconStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.main,
-      },
-      icon: <WorkIcon />,
-    },
 
-    {
-      type: "work",
-      year: "2018",
-      company: "DXC TECHNOLOGY",
-      position1: "Labor Accounting Deputy Team leader",
-      position2: "",
-      description: "",
-      problem: "time-consuming reporting processes, a lot of data copy-pasting",
-      solution:
-        "created multiple Excel macros (code written in VBA) to do majority of the reporting work with one button click",
-      contentStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.light,
+  let timeLineItems = {
+    english: [
+      {
+        type: "school",
+        year: "2016",
+        company: "CHARLES UNIVERSITY IN PRAGUE",
+        position1: "Bachelor degree in Economics and Finance",
+        description:
+          "acquired advanced math skills and strong analytical thinking",
+        problem: "",
+        solution: "",
+        contentStyle: {
+          background: theme.palette.secondary.main,
+          color: theme.palette.primary.main,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.secondary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.secondary.main,
+          color: theme.palette.primary.dark,
+        },
+        icon: <SchoolIcon />,
       },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.main}`,
+      {
+        type: "work",
+        year: "2017",
+        company: "CSC COMPUTER SCIENCES",
+        position1: "Labor Accounting Associate Professional",
+        position2: "",
+        description: "",
+        problem:
+          "processes included sending very similar emails to many recipients one by one, only changing few words",
+        solution:
+          "created an Excel macro (code written in VBA) which enabled mass sending of customized emails with one button click",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      iconStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.main,
+
+      {
+        type: "work",
+        year: "2018",
+        company: "DXC TECHNOLOGY",
+        position1: "Labor Accounting Deputy Team leader",
+        position2: "",
+        description: "",
+        problem:
+          "time-consuming reporting processes, a lot of data copy-pasting",
+        solution:
+          "created multiple Excel macros (code written in VBA) to do majority of the reporting work with one button click",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      icon: <WorkIcon />,
-    },
-    {
-      type: "work",
-      year: "2019",
-      company: "DXC TECHNOLOGY",
-      position1: "Process Improvement Specialist",
-      position2: "General Ledger Accountant",
-      description: "",
-      problem:
-        "asked to provide a solution for processing access requests to internal database (done by sending emails manually)",
-      solution:
-        "set up a process flow in MS Power Automate which sends automatic emails to requester, approvers and technical support",
-      contentStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.light,
+      {
+        type: "work",
+        year: "2019",
+        company: "DXC TECHNOLOGY",
+        position1: "Process Improvement Specialist",
+        position2: "General Ledger Accountant",
+        description: "",
+        problem:
+          "asked to provide a solution for processing access requests to internal database (done by sending emails manually)",
+        solution:
+          "set up a process flow in MS Power Automate which sends automatic emails to requester, approvers and technical support",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.dark}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.dark}`,
+      {
+        type: "work",
+        year: "2020",
+        company: "DXC TECHNOLOGY",
+        position1: "Process Improvement Specialist",
+        position2: "General Ledger Accountant",
+        description: "",
+        problem:
+          "employee absences requests being submitted by email, their overview stored in manually updated Excel tables",
+        solution:
+          "created an application in MS PowerApps (code similar to JavaScript) to easily manage the absence requests, data are stored on cloud.\nThe app is now used accross the whole company.",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.dark}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      iconStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.main,
+    ],
+    czech: [
+      {
+        type: "school",
+        year: "2016",
+        company: "UNIVERZITA KARLOVA",
+        position1: "Ekonomie a Finance - bakalářské",
+        description:
+          "nabytí pokročilých matematických dovedností a silného analytického uvažování",
+        problem: "",
+        solution: "",
+        contentStyle: {
+          background: theme.palette.secondary.main,
+          color: theme.palette.primary.main,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.secondary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.secondary.main,
+          color: theme.palette.primary.dark,
+        },
+        icon: <SchoolIcon />,
       },
-      icon: <WorkIcon />,
-    },
-    {
-      type: "work",
-      year: "2020",
-      company: "DXC TECHNOLOGY",
-      position1: "Process Improvement Specialist",
-      position2: "General Ledger Accountant",
-      description: "",
-      problem:
-        "employee absences requests being submitted by email, their overview stored in manually updated Excel tables",
-      solution:
-        "created an application in MS PowerApps (code similar to JavaScript) to easily manage the absence requests, data are stored on cloud.\nThe app is now used accross the whole company.",
-      contentStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.light,
+      {
+        type: "work",
+        year: "2017",
+        company: "CSC COMPUTER SCIENCES",
+        position1: "Labor Accounting Associate Professional",
+        position2: "",
+        description: "",
+        problem:
+          "procesy zahrnovaly zasílání velmi podobných e-mailů mnoha příjemcům jeden po druhém, přičemž se měnilo jen malé množství slov",
+        solution:
+          "vytvořeno makro v Excelu (kód napsán ve VBA), jenž umožnilo hromadné zasílání přizpůsobených e-mailů jedním klikem tlačítka",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      contentArrowStyle: {
-        borderRight: `7px solid  ${theme.palette.primary.dark}`,
+
+      {
+        type: "work",
+        year: "2018",
+        company: "DXC TECHNOLOGY",
+        position1: "Labor Accounting Deputy Team leader",
+        position2: "",
+        description: "",
+        problem:
+          "zdlouhavé procesy na vytváření reportů, mnoho kopírování a vkládání dat",
+        solution:
+          "vytvořeno několik maker v Excelu (kód napsán ve VBA), které většinu práce na reportingu zvládne za použití jediného tlačítka",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.main}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      iconStyle: {
-        background: theme.palette.primary.dark,
-        color: theme.palette.secondary.main,
+      {
+        type: "work",
+        year: "2019",
+        company: "DXC TECHNOLOGY",
+        position1: "Process Improvement Specialist",
+        position2: "General Ledger Accountant",
+        description: "",
+        problem:
+          "požádán o poskytnutí řešení na zpracovávání žádostí o přístup k interní databázi (prováděno posíláním e-mailů individuálně)",
+        solution:
+          "nastaven procesní tok v MS Power Automate, který zasílá automatické e-maily žadateli, schvalovateli a technické podpoře",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.dark}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
       },
-      icon: <WorkIcon />,
-    },
-  ];
+      {
+        type: "work",
+        year: "2020",
+        company: "DXC TECHNOLOGY",
+        position1: "Process Improvement Specialist",
+        position2: "General Ledger Accountant",
+        description: "",
+        problem:
+          "žádosti zaměstnanců o absenci podávány e-mailem, jejich přehled uchováván v manuálně auktualizovaných excelových tabulkách",
+        solution:
+          "vytvořena aplikace v MS PowerApps (kód podobný JavaScriptu) pro jednoduchou správu žádostí o absenci, data uchovávána na cloudovém úložišti.\nTato aplikace je nyní využívána napříč celou firmou.",
+        contentStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
+        },
+        contentArrowStyle: {
+          borderRight: `7px solid  ${theme.palette.primary.dark}`,
+        },
+        iconStyle: {
+          background: theme.palette.primary.dark,
+          color: theme.palette.secondary.main,
+        },
+        icon: <WorkIcon />,
+      },
+    ],
+  };
+
+  props.language === "czech"
+    ? (timeLineItems = timeLineItems.czech)
+    : (timeLineItems = timeLineItems.english);
+
   return (
     <VerticalTimeline className={classes.timeline}>
       {timeLineItems.map((item, key) => (

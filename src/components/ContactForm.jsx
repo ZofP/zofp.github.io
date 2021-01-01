@@ -27,50 +27,94 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactForm = () => {
+const ContactForm = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const InputFields = [
-    {
-      fieldName: "name",
-      fieldLabel: "Name",
-      required: true,
-      style: {
-        color: theme.palette.primary.main,
+  let inputFields = {
+    english: [
+      {
+        fieldName: "name",
+        fieldLabel: "Name",
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+        },
       },
-    },
-    {
-      fieldName: "email",
-      fieldLabel: "Email",
-      multiline: false,
-      required: true,
-      style: {
-        color: theme.palette.primary.main,
+      {
+        fieldName: "email",
+        fieldLabel: "Email",
+        multiline: false,
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+        },
       },
-    },
-    {
-      fieldName: "companyName",
-      fieldLabel: "Company Name",
-      multiline: false,
-      style: {
-        color: theme.palette.primary.main,
+      {
+        fieldName: "companyName",
+        fieldLabel: "Company Name",
+        multiline: false,
+        style: {
+          color: theme.palette.primary.main,
+        },
       },
-    },
 
-    {
-      fieldName: "message",
-      fieldLabel: "Message",
-      multiline: true,
-      required: true,
-      style: {
-        color: theme.palette.primary.main,
-        height: "6rem",
+      {
+        fieldName: "message",
+        fieldLabel: "Message",
+        multiline: true,
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+          height: "6rem",
+        },
       },
-    },
-  ];
+    ],
+    czech: [
+      {
+        fieldName: "name",
+        fieldLabel: "Jméno",
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+        },
+      },
+      {
+        fieldName: "email",
+        fieldLabel: "E-mail",
+        multiline: false,
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+        },
+      },
+      {
+        fieldName: "companyName",
+        fieldLabel: "Název firmy",
+        multiline: false,
+        style: {
+          color: theme.palette.primary.main,
+        },
+      },
 
-  const defaultInputValues = InputFields.reduce(
+      {
+        fieldName: "message",
+        fieldLabel: "Zpráva",
+        multiline: true,
+        required: true,
+        style: {
+          color: theme.palette.primary.main,
+          height: "6rem",
+        },
+      },
+    ],
+  };
+
+  props.language === "czech"
+    ? (inputFields = inputFields.czech)
+    : (inputFields = inputFields.english);
+
+  const defaultInputValues = inputFields.reduce(
     (acc, cur) => ({ ...acc, [cur.fieldName]: "" }),
     {}
   );
@@ -108,7 +152,7 @@ const ContactForm = () => {
   return (
     <Box component="div" className={classes.form}>
       <form noValidate onSubmit={() => methods.handleSubmit(onSubmit)}>
-        {InputFields.map(
+        {inputFields.map(
           (
             {
               required = false,
@@ -138,8 +182,6 @@ const ContactForm = () => {
                     ...state,
                     [fieldName]: event.target.value,
                   });
-                  console.log(state);
-                  console.log(methods.errors);
                 },
               }}
               margin="dense"
@@ -149,11 +191,16 @@ const ContactForm = () => {
               rules={{
                 required: {
                   value: required,
-                  message: "THIS FIELD IS REQUIRED",
+                  message:
+                    props.language === "czech"
+                      ? "TOTO POLE JE POVINNÉ"
+                      : "THIS FIELD IS REQUIRED",
                 },
                 validate: (input) =>
                   !isEmail(input) && fieldName === "email"
-                    ? "THIS FIELD MUST BE IN EMAIL FORMAT"
+                    ? props.language === "czech"
+                      ? "TOTO POLE MUSÍ BÝT V E-MAIL FORMÁTU"
+                      : "THIS FIELD MUST BE IN EMAIL FORMAT"
                     : undefined,
               }}
               error={Boolean(methods.errors[fieldName])}
@@ -177,13 +224,8 @@ const ContactForm = () => {
             alert("Your message has been sent");
           }}
           disabled={!methods.formState.isValid}
-          // style={{
-          //   background: methods.formState.isValid
-          //     ? theme.palette.primary.success
-          //     : theme.palette.primary.error,
-          // }}
         >
-          SEND
+          {props.language === "czech" ? "ODESLAT" : "SEND"}
         </Button>
       </form>
     </Box>
