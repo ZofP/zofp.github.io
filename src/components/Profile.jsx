@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "none",
   },
   title: {
-    // color: "#3a4c5a",
     color: theme.palette.primary.dark,
     textAlign: "center",
     fontWeight: "300",

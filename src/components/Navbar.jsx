@@ -127,7 +127,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover span": {
       color: theme.palette.secondary.main,
       transform: "translateY(-5%)",
-      // fontWeight: "600",
     },
     "& span": {
       transition: "all 0.15s ease-out",
@@ -146,7 +145,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
     height: "100%",
-    // transform: "scale(1.1)",
     "& svg": { cursor: "pointer" },
   },
   iconContainer: {
@@ -280,7 +278,6 @@ const Navbar = (props) => {
             <>
               <Scrollspy
                 componentTag={List}
-                // items={menuItems.map((item) => item.itemText.toLowerCase())}
                 items={menuItems.map((item) => item.itemPath.slice(1))}
                 offset={-48}
                 currentClassName={classes.menuItemCurrent}

@@ -134,7 +134,7 @@ const ContactForm = (props) => {
     e.preventDefault();
     emailjs
       .send(
-        "gmail",
+        process.env.REACT_APP_SERVICE_ID,
         process.env.REACT_APP_TEMPLATE_ID,
         state,
         process.env.REACT_APP_USER_ID
@@ -221,7 +221,6 @@ const ContactForm = (props) => {
           onClick={(e) => {
             sendEmail(e);
             methods.reset();
-            alert("Your message has been sent");
           }}
           disabled={!methods.formState.isValid}
         >
