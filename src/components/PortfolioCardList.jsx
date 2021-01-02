@@ -86,7 +86,7 @@ const PortfolioCardList = (props) => {
         image: avatarImage,
         text: "My personal portfolio web page. Made from scratch.",
         icons: [{ title: "React", component: <REACTicon /> }],
-        source: "/",
+        source: "https://github.com/ZofP/zofp.github.io",
         demo: "/",
       },
       {
@@ -131,7 +131,7 @@ const PortfolioCardList = (props) => {
         image: avatarImage,
         text: "Moje osobní webová stránka portfolia. Vytvořeno od nuly.",
         icons: [{ title: "React", component: <REACTicon /> }],
-        source: "/",
+        source: "https://github.com/ZofP/zofp.github.io",
         demo: "/",
       },
       {
