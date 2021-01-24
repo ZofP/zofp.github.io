@@ -207,9 +207,9 @@ const TimeLine = (props) => {
         type: "school",
         year: "2016",
         company: "UNIVERZITA KARLOVA",
-        position1: "Ekonomie a Finance - bakalářské",
+        position1: "Ekonomie a Finance - bakalářské studium",
         description:
-          "nabytí pokročilých matematických dovedností a silného analytického uvažování",
+          "zisk pokročilých matematických dovedností a analytického myšlení",
         problem: "",
         solution: "",
         contentStyle: {
@@ -233,9 +233,9 @@ const TimeLine = (props) => {
         position2: "",
         description: "",
         problem:
-          "procesy zahrnovaly zasílání velmi podobných e-mailů mnoha příjemcům jeden po druhém, přičemž se měnilo jen malé množství slov",
+          "procesy obsahovaly zasílání podobných e-mailů mnoha příjemcům jeden po druhém, měnilo se jen malé množství slov",
         solution:
-          "vytvořeno makro v Excelu (kód napsán ve VBA), jenž umožnilo hromadné zasílání přizpůsobených e-mailů jedním klikem tlačítka",
+          "vytvořeno makro v Excelu (kód napsán ve VBA), jež umožnilo hromadné zasílání přizpůsobitelných e-mailů stiskem jednoho tlačítka",
         contentStyle: {
           background: theme.palette.primary.dark,
           color: theme.palette.secondary.light,
@@ -260,7 +260,7 @@ const TimeLine = (props) => {
         problem:
           "zdlouhavé procesy na vytváření reportů, mnoho kopírování a vkládání dat",
         solution:
-          "vytvořeno několik maker v Excelu (kód napsán ve VBA), které většinu práce na reportingu zvládne za použití jediného tlačítka",
+          "vytvořeno několik maker v Excelu (kód napsán ve VBA), které většinu práce na reportingu provedou stiskem jednoho tlačítka",
         contentStyle: {
           background: theme.palette.primary.dark,
           color: theme.palette.secondary.light,
@@ -282,7 +282,7 @@ const TimeLine = (props) => {
         position2: "General Ledger Accountant",
         description: "",
         problem:
-          "požádán o poskytnutí řešení na zpracovávání žádostí o přístup k interní databázi (prováděno posíláním e-mailů individuálně)",
+          "požádán o vybudování řešení na zpracovávání žádostí o přístup k interní databázi (žádáno zasíláním jednotlivých e-mailů)",
         solution:
           "nastaven procesní tok v MS Power Automate, který zasílá automatické e-maily žadateli, schvalovateli a technické podpoře",
         contentStyle: {
@@ -306,9 +306,9 @@ const TimeLine = (props) => {
         position2: "General Ledger Accountant",
         description: "",
         problem:
-          "žádosti zaměstnanců o absenci podávány e-mailem, jejich přehled uchováván v manuálně auktualizovaných excelových tabulkách",
+          "žádosti zaměstnanců o absence podávány e-mailem, jejich přehled uchováván v manuálně aktualizovaných excelových tabulkách",
         solution:
-          "vytvořena aplikace v MS PowerApps (kód podobný JavaScriptu) pro jednoduchou správu žádostí o absenci, data uchovávána na cloudovém úložišti.\nTato aplikace je nyní využívána napříč celou firmou.",
+          "vytvořena aplikace v MS PowerApps (kód podobný JavaScriptu) pro jednoduchou správu žádostí o absence, data uchovávána na cloudovém úložišti.\nTato aplikace je nyní využívána napříč celou firmou.",
         contentStyle: {
           background: theme.palette.primary.dark,
           color: theme.palette.secondary.light,
