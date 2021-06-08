@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/styles";
 
 import { Bounce } from "react-reveal";
 
+import moment from "moment";
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     background: theme.palette.primary.dark,
@@ -24,11 +26,13 @@ const useStyles = makeStyles((theme) => ({
 const Footer = () => {
   const classes = useStyles();
 
+  const currentYear = moment().format("YYYY");
+
   return (
     <Box className={classes.footer}>
       <footer>
         <Bounce left>
-          <p className={classes.text}>&copy; Petr Žofák 2020</p>
+          <p className={classes.text}>&copy; Petr Žofák {currentYear}</p>
         </Bounce>
       </footer>
     </Box>

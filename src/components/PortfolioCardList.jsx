@@ -15,15 +15,14 @@ import {
   Zoom,
 } from "@material-ui/core";
 
-import { TiHtml5 as HTMLicon } from "react-icons/ti";
-import { SiCsswizardry as CSSicon } from "react-icons/si";
-import { SiJavascript as JSicon } from "react-icons/si";
-import { SiReact as REACTicon } from "react-icons/si";
+import { SiReact as ReactIcon } from "react-icons/si";
+import { SiRedux as ReduxIcon } from "react-icons/si";
+import { SiFirebase as FirebaseIcon } from "react-icons/si";
 
-import backroads from "../images/backroads.jpeg";
-import coffeebar from "../images/coffeebar.jpeg";
 import pixabay from "../images/pixabay.jpg";
 import avatarImage from "../images/avatar.png";
+import youtubeClone from "../images/youtube-clone.png";
+import facebookClone from "../images/facebook-clone.png";
 
 const useStyles = makeStyles((theme) => ({
   cardListContainer: {
@@ -82,92 +81,84 @@ const PortfolioCardList = (props) => {
   let projectDetails = {
     english: [
       {
-        name: "Personal Portfolio \n (This Page)",
-        image: avatarImage,
-        text: "My personal portfolio web page. Made from scratch.",
-        icons: [{ title: "React", component: <REACTicon /> }],
-        source: "https://github.com/ZofP/zofp.github.io",
-        demo: "/",
+        name: "YouTube Clone",
+        image: youtubeClone,
+        text: "App showing popular video sharing site features.",
+        icons: [
+          { title: "React", component: <ReactIcon /> },
+          { title: "Redux", component: <ReduxIcon /> },
+          { title: "Firebase", component: <FirebaseIcon /> },
+        ],
+        source: "https://github.com/ZofP/youtube-clone-project",
+        demo: "https://zofp.github.io/youtube-clone-project/",
       },
       {
-        name: "Search Pixabay Pictures Project",
+        name: "Facebook Clone",
+        image: facebookClone,
+        text: "App showing popular social media site features.",
+        icons: [
+          { title: "React", component: <ReactIcon /> },
+          { title: "Firebase", component: <FirebaseIcon /> },
+        ],
+        source: "https://github.com/ZofP/facebook-clone-project",
+        demo: "https://zofp.github.io/facebook-clone-project/",
+      },
+      {
+        name: "Pixabay Pictures Search",
         image: pixabay,
-        text:
-          "Web page that allows to search pictures from public Pixabay API. Made from scratch.",
-        icons: [{ title: "React", component: <REACTicon /> }],
+        text: "App that allows to search pictures from public Pixabay API.",
+        icons: [{ title: "React", component: <ReactIcon /> }],
         source: "https://github.com/ZofP/search-pixabay-pictures",
         demo: "https://zofp.github.io/search-pixabay-pictures/",
       },
       {
-        name: "Backroads Project",
-        image: backroads,
-        text:
-          "Web page of a fictional Backroads travel agency. Made as a part of an online course.",
-        icons: [
-          { title: "HTML", component: <HTMLicon /> },
-          { title: "CSS", component: <CSSicon /> },
-          { title: "JavaScript", component: <JSicon /> },
-        ],
-        source: "https://github.com/ZofP/backroads-JS-project",
-        demo: "https://zofp.github.io/backroads-JS-project/index.html",
-      },
-      {
-        name: "Coffee Bar Project",
-        image: coffeebar,
-        text:
-          "Web page of a fictional coffee bar. Main focus on CSS, with a couple of JavaScript effects. Made as a part of an online course.",
-        icons: [
-          { title: "HTML", component: <HTMLicon /> },
-          { title: "CSS", component: <CSSicon /> },
-          { title: "JavaScript", component: <JSicon /> },
-        ],
-        source: "https://github.com/ZofP/coffee-bar-JS-project",
-        demo: "https://zofp.github.io/coffee-bar-JS-project/",
+        name: "Personal Portfolio \n (This Page)",
+        image: avatarImage,
+        text: "My personal portfolio web page.",
+        icons: [{ title: "React", component: <ReactIcon /> }],
+        source: "https://github.com/ZofP/zofp.github.io",
+        demo: "/",
       },
     ],
     czech: [
       {
-        name: "Osobní portfolio \n (tato stránka)",
-        image: avatarImage,
-        text: "Moje osobní webová stránka portfolia. Vytvořeno od nuly.",
-        icons: [{ title: "React", component: <REACTicon /> }],
-        source: "https://github.com/ZofP/zofp.github.io",
-        demo: "/",
+        name: "YouTube Clone",
+        image: youtubeClone,
+        text: "Aplikace ukazující některé funkce populárního serveru pro sdílení videosouborů.",
+        icons: [
+          { title: "React", component: <ReactIcon /> },
+          { title: "Redux", component: <ReduxIcon /> },
+          { title: "Firebase", component: <FirebaseIcon /> },
+        ],
+        source: "https://github.com/ZofP/youtube-clone-project",
+        demo: "https://zofp.github.io/youtube-clone-project/",
+      },
+      {
+        name: "Facebook Clone",
+        image: facebookClone,
+        text: "Aplikace ukazující některé funkce populárního sociálního média.",
+        icons: [
+          { title: "React", component: <ReactIcon /> },
+          { title: "Firebase", component: <FirebaseIcon /> },
+        ],
+        source: "https://github.com/ZofP/facebook-clone-project",
+        demo: "https://zofp.github.io/facebook-clone-project/",
       },
       {
         name: "Vyhledavač Pixabay obrázků",
         image: pixabay,
-        text:
-          "Webová stránka umožňující vyhledat obrázky z veřejného Pixabay API. Vytvořeno od nuly.",
-        icons: [{ title: "React", component: <REACTicon /> }],
+        text: "Aplikace umožňující vyhledat obrázky z veřejného Pixabay API.",
+        icons: [{ title: "React", component: <ReactIcon /> }],
         source: "https://github.com/ZofP/search-pixabay-pictures",
         demo: "https://zofp.github.io/search-pixabay-pictures/",
       },
       {
-        name: "Backroads Projekt",
-        image: backroads,
-        text:
-          "Webová stránka fiktivní cestovní agentury Backroads. Vytvořeno jako součást online kurzu.",
-        icons: [
-          { title: "HTML", component: <HTMLicon /> },
-          { title: "CSS", component: <CSSicon /> },
-          { title: "JavaScript", component: <JSicon /> },
-        ],
-        source: "https://github.com/ZofP/backroads-JS-project",
-        demo: "https://zofp.github.io/backroads-JS-project/index.html",
-      },
-      {
-        name: "Coffee Bar Projekt",
-        image: coffeebar,
-        text:
-          "Webová stránka fiktivní kavárny. Zaměřeno předevšim na CSS a pár efektů v JavaScriptu. Vytvořeno jako součást online kurzu.",
-        icons: [
-          { title: "HTML", component: <HTMLicon /> },
-          { title: "CSS", component: <CSSicon /> },
-          { title: "JavaScript", component: <JSicon /> },
-        ],
-        source: "https://github.com/ZofP/coffee-bar-JS-project",
-        demo: "https://zofp.github.io/coffee-bar-JS-project/",
+        name: "Osobní portfolio \n (tato stránka)",
+        image: avatarImage,
+        text: "Moje osobní portfolio.",
+        icons: [{ title: "React", component: <ReactIcon /> }],
+        source: "https://github.com/ZofP/zofp.github.io",
+        demo: "/",
       },
     ],
   };

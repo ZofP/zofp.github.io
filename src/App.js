@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  CssBaseline,
+  CssBaseline, useMediaQuery,
 } from '@material-ui/core/'
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -54,6 +54,8 @@ const theme = createMuiTheme({
 
 
 function App() {
+
+
   let languageStoredInLocalStorage = localStorage.getItem("language");
   let [language, setLanguage] = useState(
     languageStoredInLocalStorage ? languageStoredInLocalStorage : "english"
@@ -68,10 +70,14 @@ function App() {
     storeLanguageInLocalStorage(language);
   }
 
+  const bigScreen = useMediaQuery(theme.breakpoints.up('sm'))
+
   return (
     <>
       <ThemeProvider theme={theme}>
-        <ParticlesBackground />
+        {bigScreen &&
+          < ParticlesBackground />
+        }
         <CssBaseline />
         <Navbar language={language}
           handleSetLanguage={handleSetLanguage} />
