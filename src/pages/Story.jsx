@@ -370,7 +370,7 @@ const Story = (props) => {
         company: "DATA4YOU",
         position1: "Coding Bootcamp Praha",
         description:
-          "12-týdenní kurz na plný úvazek zaměřený na JavaScript, React, PHP, Laravel",
+          "12týdenní celodenní kurz zaměřený na JavaScript, React, PHP, Laravel",
         problem: "",
         solution: "",
         contentStyle: {
