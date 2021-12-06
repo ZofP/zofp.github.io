@@ -52,11 +52,17 @@ const Profile = (props) => {
   let strings = {
     english: {
       title: ["Petr Žofák"],
-      subtitle: ["aspiring web developer", "React | JavaScript"],
+      subtitle: [
+        "aspiring web developer",
+        "React | JavaScript | Laravel | PHP",
+      ],
     },
     czech: {
       title: ["Petr Žofák"],
-      subtitle: ["aspirující web developer", "React | JavaScript"],
+      subtitle: [
+        "aspirující web developer",
+        "React | JavaScript | Laravel | PHP",
+      ],
     },
   };
 
